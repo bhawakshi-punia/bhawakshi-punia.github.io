@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Bhawakshi Punia — AI & Computational Scientist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0e0f;
+    --bg2: #131415;
+    --bg3: #1a1b1c;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #e8e6e1;
+    --text2: #9a9690;
+    --text3: #5c5a56;
+    --accent: #c8b89a;
+    --accent2: #7eb8a0;
+    --accent3: #a0b4c8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* --- NAV --- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 4rem;
+    background: rgba(13,14,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text2);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* --- SECTIONS --- */
+  section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* --- HERO --- */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 8rem 2rem 4rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--accent2);
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 8vw, 88px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.2em;
+    color: var(--text);
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-title {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--text2);
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .hero-title span.sep {
+    color: var(--text3);
+  }
+
+  .hero-bio {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--text2);
+    max-width: 620px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-bio strong {
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+  }
+
+  .btn-primary {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity 0.2s;
+  }
+
+  .btn-primary:hover { opacity: 0.85; }
+
+  .btn-ghost {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    background: transparent;
+    color: var(--text2);
+    border: 1px solid var(--border2);
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+    width: fit-content;
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+  }
+
+  /* --- SECTION HEADERS --- */
+  .sec-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    padding-top: 6rem;
+  }
+
+  .sec-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text3);
+  }
+
+  .sec-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .sec-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* --- EXPERIENCE --- */
+  .exp-block {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .exp-block:last-child { border-bottom: none; }
+
+  .exp-meta {
+    padding-top: 4px;
+  }
+
+  .exp-company {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .exp-duration {
+    font-size: 12px;
+    color: var(--text3);
+    margin-bottom: 4px;
+  }
+
+  .exp-location {
+    font-size: 12px;
+    color: var(--text3);
+  }
+
+  .exp-roles {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .exp-role-item {
+    padding-left: 1.25rem;
+    border-left: 1px solid var(--border2);
+  }
+
+  .exp-role-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .exp-role-date {
+    font-size: 12px;
+    color: var(--text3);
+    margin-bottom: 8px;
+  }
+
+  .exp-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .exp-bullet {
+    font-size: 13.5px;
+    color: var(--text2);
+    line-height: 1.65;
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .exp-bullet::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--text3);
+    font-size: 11px;
+    top: 3px;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+  }
+
+  .tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border: 1px solid var(--border2);
+    border-radius: 2px;
+    color: var(--text3);
+    letter-spacing: 0.04em;
+  }
+
+  /* --- SKILLS --- */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .skill-cell {
+    background: var(--bg2);
+    padding: 1.75rem;
+  }
+
+  .skill-cell-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 1rem;
+  }
+
+  .skill-items {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .skill-item {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text2);
+    line-height: 1.4;
+    transition: color 0.2s;
+  }
+
+  .skill-item:hover { color: var(--text); }
+
+  /* --- PROJECTS --- */
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .proj-item {
+    background: var(--bg2);
+    padding: 2rem 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: start;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .proj-item:hover { background: var(--bg3); }
+
+  .proj-domain {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent3);
+    margin-bottom: 6px;
+  }
+
+  .proj-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+
+  .proj-desc {
+    font-size: 13.5px;
+    color: var(--text2);
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 12px;
+  }
+
+  .proj-arrow {
+    font-size: 20px;
+    color: var(--text3);
+    padding-top: 8px;
+    transition: color 0.2s, transform 0.2s;
+  }
+
+  .proj-item:hover .proj-arrow {
+    color: var(--accent);
+    transform: translate(3px, -3px);
+  }
+
+  /* --- PUBLICATIONS --- */
+  .pub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .pub-item {
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .pub-year {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text3);
+    padding-top: 3px;
+  }
+
+  .pub-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.45;
+    margin-bottom: 4px;
+  }
+
+  .pub-journal {
+    font-size: 12px;
+    color: var(--text3);
+    letter-spacing: 0.04em;
+  }
+
+  /* --- ABOUT / STORY --- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+  }
+
+  .about-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 300;
+    color: var(--text2);
+    line-height: 1.75;
+  }
+
+  .about-text strong {
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  .about-text p + p { margin-top: 1.25rem; }
+
+  .about-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .about-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+
+  .about-card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 10px;
+  }
+
+  .about-card-text {
+    font-size: 13.5px;
+    color: var(--text2);
+    line-height: 1.65;
+  }
+
+  .edu-item {
+    margin-bottom: 10px;
+  }
+
+  .edu-degree {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .edu-inst {
+    font-size: 12.5px;
+    color: var(--text3);
+  }
+
+  /* --- CONTACT --- */
+  .contact-block {
+    padding: 5rem 0 6rem;
+    text-align: center;
+  }
+
+  .contact-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .contact-heading em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .contact-sub {
+    font-size: 14px;
+    color: var(--text2);
+    margin-bottom: 2.5rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* --- FOOTER --- */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text3);
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.06em;
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up {
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.22s; }
+  .delay-3 { animation-delay: 0.36s; }
+  .delay-4 { animation-delay: 0.52s; }
+  .delay-5 { animation-delay: 0.68s; }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { padding: 7rem 1.5rem 3rem; }
+    section { padding: 0 1.5rem; }
+    .exp-block { grid-template-columns: 1fr; gap: 1rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-stats { grid-template-columns: repeat(3, auto); gap: 1.5rem; }
+    .proj-item { grid-template-columns: 1fr; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">Dr. Bhawakshi Punia</span>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <p class="hero-eyebrow fade-up">AI · Computational Science · Health & Wellness</p>
+  <h1 class="hero-name fade-up delay-1">Dr. Bhawakshi<br><em>Punia</em></h1>
+  <div class="hero-title fade-up delay-2">
+    <span>Jr. AI & Computational Scientist</span>
+    <span class="sep">·</span>
+    <span>Aganitha.ai</span>
+    <span class="sep">·</span>
+    <span>PhD, Theoretical Physical Chemistry</span>
+  </div>
+  <p class="hero-bio fade-up delay-3">
+    I apply <strong>machine learning and deep learning</strong> to hard problems in computational chemistry and biology — building predictive models and experiment pipelines where rigorous scientific foundations meet production ML. My PhD in <strong>Theoretical Physical Chemistry</strong> (Monte Carlo simulations, stochastic modelling) extends naturally into the AI-for-science space.
+  </p>
+  <div class="hero-actions fade-up delay-4">
+    <a href="#projects" class="btn-primary">View Projects</a>
+    <a href="https://www.linkedin.com/in/dr-bhawakshi-punia-110a81298/" target="_blank" class="btn-ghost">LinkedIn</a>
+    <a href="https://github.com/cationic-lady" target="_blank" class="btn-ghost">GitHub</a>
+    <a href="https://public.tableau.com/app/profile/bhawakshi.punia/vizzes" target="_blank" class="btn-ghost">Tableau</a>
+  </div>
+  <div class="hero-stats fade-up delay-5">
+    <div>
+      <p class="stat-num">10</p>
+      <p class="stat-label">Publications</p>
+    </div>
+    <div>
+      <p class="stat-num">4+</p>
+      <p class="stat-label">ML Projects</p>
+    </div>
+    <div>
+      <p class="stat-num">1yr+</p>
+      <p class="stat-label">Industry Experience</p>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-header">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">Experience</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="exp-block">
+    <div class="exp-meta">
+      <p class="exp-company">Aganitha.ai</p>
+      <p class="exp-duration">Mar 2025 – Present</p>
+      <p class="exp-duration">1 yr 2 mos</p>
+      <p class="exp-location">Hyderabad, India · On-site</p>
+    </div>
+    <div class="exp-roles">
+      <div class="exp-role-item">
+        <p class="exp-role-title">Jr. AI & Computational Scientist 2</p>
+        <p class="exp-role-date">Mar 2026 – Present · 2 mos · Full-time</p>
+      </div>
+      <div class="exp-role-item">
+        <p class="exp-role-title">Jr. AI & Computational Scientist 1</p>
+        <p class="exp-role-date">Sep 2025 – Mar 2026 · 7 mos · Full-time</p>
+      </div>
+      <div class="exp-role-item">
+        <p class="exp-role-title">Tech Scientist – Intern</p>
+        <p class="exp-role-date">Mar 2025 – Aug 2025 · 6 mos · Internship</p>
+        <div class="exp-bullets">
+          <p class="exp-bullet">Collaborated on a client-focused enzyme engineering project within a cross-disciplinary team</p>
+          <p class="exp-bullet">Applied Protein Language Models (PLMs) and deep learning to build predictive modelling pipelines</p>
+          <p class="exp-bullet">Implemented systematic experiment tracking with ClearML for iterative model development and performance evaluation</p>
+          <p class="exp-bullet">Worked with predictive modelling, statistical analysis, and experiment tracking across computational biology workflows</p>
+        </div>
+        <div class="tag-row">
+          <span class="tag">PyTorch</span>
+          <span class="tag">Python</span>
+          <span class="tag">ClearML</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Scikit-learn</span>
+          <span class="tag">PLMs</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Statistical Analysis</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-block">
+    <div class="exp-meta">
+      <p class="exp-company">IISER Pune</p>
+      <p class="exp-duration">PhD Researcher</p>
+      <p class="exp-duration">Theoretical Physical Chemistry</p>
+      <p class="exp-location">Pune, India · 2024</p>
+    </div>
+    <div class="exp-roles">
+      <div class="exp-role-item">
+        <p class="exp-role-title">Doctoral Researcher</p>
+        <p class="exp-role-date" style="font-style:italic;margin-bottom:10px;">"Exploring microscopic mechanisms of chemical and biological processes using discrete-state stochastic models"</p>
+        <div class="exp-bullets">
+          <p class="exp-bullet">Specialised in discrete-state modelling of stochastic processes and Monte Carlo simulations across protein–DNA interactions, nanopore transport, and nanoparticle catalysis</p>
+          <p class="exp-bullet">Published 10 peer-reviewed papers including a PNAS article and a journal cover — all as first author</p>
+          <p class="exp-bullet">Collaborated with Prof. A. B. Kolomeisky (Rice University) on theoretical frameworks for single-molecule catalysis</p>
+          <p class="exp-bullet">Built deep expertise in mathematical modelling, data analysis, and problem decomposition now applied to ML workflows</p>
+        </div>
+        <div class="tag-row">
+          <span class="tag">Monte Carlo Simulations</span>
+          <span class="tag">Stochastic Modelling</span>
+          <span class="tag">Mathematical Modelling</span>
+          <span class="tag">Computational Chemistry</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-header">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">Skills & Tools</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-cell">
+      <p class="skill-cell-label">ML & Deep Learning</p>
+      <div class="skill-items">
+        <span class="skill-item">PyTorch</span>
+        <span class="skill-item">TensorFlow</span>
+        <span class="skill-item">Scikit-learn</span>
+        <span class="skill-item">Protein Language Models</span>
+        <span class="skill-item">Artificial Neural Networks</span>
+        <span class="skill-item">Predictive Modelling</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-cell-label">Scientific Computing</p>
+      <div class="skill-items">
+        <span class="skill-item">RDKit</span>
+        <span class="skill-item">ChEMBL</span>
+        <span class="skill-item">Monte Carlo Methods</span>
+        <span class="skill-item">Molecular Fingerprints</span>
+        <span class="skill-item">Stochastic Modelling</span>
+        <span class="skill-item">Computational Chemistry</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-cell-label">Data & Tooling</p>
+      <div class="skill-items">
+        <span class="skill-item">Python · Pandas · NumPy</span>
+        <span class="skill-item">ClearML · Docker · GitHub</span>
+        <span class="skill-item">Tableau · Seaborn</span>
+        <span class="skill-item">OpenCV · NLTK · SpaCy</span>
+        <span class="skill-item">NLP & Text Analysis</span>
+        <span class="skill-item">OCR & Computer Vision</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-header">
+    <span class="sec-num">03</span>
+    <h2 class="sec-title">Projects</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="projects-list">
+    <a class="proj-item" href="https://github.com/cationic-lady/ML_pEC50_dopamine_receptor/tree/main" target="_blank">
+      <div>
+        <p class="proj-domain">Drug Discovery · Deep Learning · Computational Chemistry</p>
+        <p class="proj-title">Predicting pEC50 for Dopamine Receptor Ligands</p>
+        <p class="proj-desc">Built predictive models using molecular fingerprints and artificial neural networks to estimate drug potency for dopamine receptor ligands. Curated datasets from ChEMBL, engineered molecular features with RDKit, and trained ANN models — directly bridging PhD-level chemistry knowledge with production ML pipelines.</p>
+        <div class="tag-row">
+          <span class="tag">RDKit</span>
+          <span class="tag">TensorFlow</span>
+          <span class="tag">ChEMBL</span>
+          <span class="tag">Scikit-learn</span>
+          <span class="tag">Feature Engineering</span>
+          <span class="tag">Deep Learning</span>
+        </div>
+      </div>
+      <span class="proj-arrow">↗</span>
+    </a>
+
+    <a class="proj-item" href="https://github.com/cationic-lady/sweet_truth" target="_blank">
+      <div>
+        <p class="proj-domain">Computer Vision · NLP · Health</p>
+        <p class="proj-title">The Sweet Truth Detector: Hidden Sweeteners in Packaged Foods</p>
+        <p class="proj-desc">Developed an OCR and NLP pipeline to automatically detect hidden sweeteners in packaged food labels — making nutritional transparency accessible and automatable at scale. Annotated images, trained classification models, and visualised the sugar landscape across food categories.</p>
+        <div class="tag-row">
+          <span class="tag">OpenCV</span>
+          <span class="tag">SpaCy</span>
+          <span class="tag">Scikit-learn</span>
+          <span class="tag">Seaborn</span>
+          <span class="tag">OCR</span>
+          <span class="tag">Image Annotation</span>
+        </div>
+      </div>
+      <span class="proj-arrow">↗</span>
+    </a>
+
+    <a class="proj-item" href="https://github.com/cationic-lady/Data_Analysis_Files/tree/main/yoga_yotube_channel" target="_blank">
+      <div>
+        <p class="proj-domain">NLP · Trend Analysis · Wellness</p>
+        <p class="proj-title">Decoding Yoga Video Trends on YouTube</p>
+        <p class="proj-desc">End-to-end data analysis of yoga channel engagement patterns using NLP and audience behaviour data. Identified content trends, audience sentiment, and performance drivers — delivered as interactive Tableau dashboards for content strategy insights.</p>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">NLTK</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">NLP</span>
+          <span class="tag">Data Visualisation</span>
+        </div>
+      </div>
+      <span class="proj-arrow">↗</span>
+    </a>
+
+    <a class="proj-item" href="https://github.com/cationic-lady/Sleep_lifestyle_analysis" target="_blank">
+      <div>
+        <p class="proj-domain">Healthcare · ML Classification · EDA</p>
+        <p class="proj-title">Detecting Sleep Disorders with Machine Learning</p>
+        <p class="proj-desc">Comprehensive lifestyle and biometric feature analysis using supervised machine learning to classify sleep disorders. Full ML pipeline from exploratory data analysis through feature engineering to model evaluation — practical end-to-end modelling for real-world health outcomes.</p>
+        <div class="tag-row">
+          <span class="tag">Pandas</span>
+          <span class="tag">Scikit-learn</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">Seaborn</span>
+          <span class="tag">Feature Engineering</span>
+          <span class="tag">EDA</span>
+        </div>
+      </div>
+      <span class="proj-arrow">↗</span>
+    </a>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="sec-header">
+    <span class="sec-num">04</span>
+    <h2 class="sec-title">Publications</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div style="margin-bottom:2rem;">
+    <p style="font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent2);margin-bottom:1.25rem;">Protein Search for Target Sites on DNA</p>
+    <div class="pub-list">
+      <div class="pub-item">
+        <span class="pub-year">2022</span>
+        <div>
+          <a href="https://doi.org/10.1039/D2CP04934A" target="_blank" class="pub-title" style="display:block;text-decoration:none;color:inherit;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='inherit'">Theoretical insights into the full description of DNA target search by subdiffusing proteins</a>
+          <p class="pub-journal">B. Punia & S. Chaudhury · Phys. Chem. Chem. Phys., 24, 29074–29083 · doi:10.1039/D2CP04934A</p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <span class="pub-year">2022</span>
+        <div>
+          <a href="https://doi.org/10.1021/acs.jpcb.2c01021" target="_blank" class="pub-title" style="display:block;text-decoration:none;color:inherit;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='inherit'">Influence of Nonspecific Interactions between Proteins and In Vivo Cytoplasmic Crowders in Facilitated Diffusion of Proteins</a>
+          <p class="pub-journal">B. Punia & S. Chaudhury · J. Phys. Chem. B, 126(16), 3037–3047 · doi:10.1021/acs.jpcb.2c01021</p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <span class="pub-year">2021</span>
+        <div>
+          <a href="https://doi.org/10.1088/1742-5468/ac0f65" target="_blank" class="pub-title" style="display:block;text-decoration:none;color:inherit;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='inherit'">Theoretical study of the role of dynamic bulk crowders in the protein search for targets on DNA</a>
+          <p class="pub-journal">B. Punia & S. Chaudhury · J. Stat. Mech: Theory Exp., 073502 · doi:10.1088/1742-5468/ac0f65</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem;">
+    <p style="font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent2);margin-bottom:1.25rem;">ssDNA Transport through Biological Nanopores <span style="color:var(--accent);font-size:9px;margin-left:8px;border:1px solid var(--accent);padding:2px 7px;border-radius:2px;letter-spacing:0.1em;">COVER ARTICLE</span></p>
+    <div class="pub-list">
+      <div class="pub-item">
+        <span class="pub-year">2024</span>
+        <div>
+          <a href="https://doi.org/10.1021/acs.jpcb.3c08350" target="_blank" class="pub-title" style="display:block;text-decoration:none;color:inherit;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='inherit'">Macromolecular crowding facilitates ssDNA capture within biological nanopores: Role of size variation and solution heterogeneity</a>
+          <p class="pub-journal">B. Punia & S. Chaudhury · J. Phys. Chem. B, 128(8), 1876–1883 · doi:10.1021/acs.jpcb.3c08350</p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <span class="pub-year">2023</span>
+        <div>
+          <a href="https://doi.org/10.1021/acs.jpcb.3c02792" target="_blank" class="pub-title" style="display:block;text-decoration:none;color:inherit;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='inherit'">Microscopic Mechanism of Macromolecular Crowder-Assisted DNA Capture and Translocation through Biological Nanopores</a>
+          <p class="pub-journal">B. Punia & S. Chaudhury · J. Phys. Chem. B, 127(26), 5850–5858 · doi:10.1021/acs.jpcb.3c02792 — <span style="color:var(--accent);">Featured on journal cover</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem;">
+    <p style="font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent2);margin-bottom:1.25rem;">Single-Molecule Nanoparticle Catalysis</p>
+    <div class="pub-list">
+      <div class="pub-item">
+        <span class="pub-year">2024</span>
+        <div>
+          <a href="https://doi.org/10.1063/5.0239455" target="_blank" class="pub-title" style="display:block;text-decoration:none;color:inherit;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='inherit'">How dynamic surface restructuring impacts intra-particle catalytic cooperativity</a>
+          <p class="pub-journal">B. Punia, S. Chaudhury & A. B. Kolomeisky · J. Chem. Phys., 161, 194107 · doi:10.1063/5.0239455</p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <span class="pub-year">2023</span>
+        <div>
+          <a href="https://doi.org/10.1021/acs.jpclett.3c01874" target="_blank" class="pub-title" style="display:block;text-decoration:none;color:inherit;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='inherit'">How Heterogeneity Affects Cooperative Communications within Single Nanocatalysts</a>
+          <p class="pub-journal">B. Punia, S. Chaudhury & A. B. Kolomeisky · J. Phys. Chem. Lett., 14(36), 8227–8234 · doi:10.1021/acs.jpclett.3c01874</p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <span class="pub-year">2022</span>
+        <div>
+          <a href="https://doi.org/10.1021/acsomega.2c06316" target="_blank" class="pub-title" style="display:block;text-decoration:none;color:inherit;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='inherit'">Theoretical Tools to Quantify Stochastic Fluctuations in Single-Molecule Catalysis by Enzymes and Nanoparticles <span style="font-size:12px;color:var(--accent3);">(Invited Review)</span></a>
+          <p class="pub-journal">D. Singh, B. Punia & S. Chaudhury · ACS Omega, 7(51), 47587–47600 · doi:10.1021/acsomega.2c06316</p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <span class="pub-year">2022</span>
+        <div>
+          <a href="https://doi.org/10.1073/pnas.2115135119" target="_blank" class="pub-title" style="display:block;text-decoration:none;color:inherit;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='inherit'">Microscopic mechanisms of cooperative communications within single nanocatalysts <span style="font-size:12px;color:var(--accent);">★ PNAS</span></a>
+          <p class="pub-journal">B. Punia, S. Chaudhury & A. B. Kolomeisky · Proc. Natl. Acad. Sci. USA, 119, e2115135119 · doi:10.1073/pnas.2115135119</p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <span class="pub-year">2021</span>
+        <div>
+          <a href="https://doi.org/10.1021/acs.jpclett.1c03557" target="_blank" class="pub-title" style="display:block;text-decoration:none;color:inherit;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='inherit'">Understanding the Reaction Dynamics on Heterogeneous Catalysts Using a Simple Stochastic Approach</a>
+          <p class="pub-journal">B. Punia, S. Chaudhury & A. B. Kolomeisky · J. Phys. Chem. Lett., 12, 11802–11810 · doi:10.1021/acs.jpclett.1c03557</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-header">
+    <span class="sec-num">05</span>
+    <h2 class="sec-title">About</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I am an <strong>AI & Computational Scientist at Aganitha.ai</strong>, where I explore challenging problems in computational chemistry and biology while applying machine learning and deep learning.
+      </p>
+      <p>
+        My scientific foundation comes from my <strong>PhD in Theoretical Physical Chemistry</strong>, where I specialised in discrete-state modelling of stochastic processes and Monte Carlo simulations. This background sharpened my skills in mathematical modelling and data analysis, which now extend naturally into the AI-for-science space.
+      </p>
+      <p>
+        I thrive in collaborative, interdisciplinary projects, bridging the gap between <strong>scientific research and computational solutions</strong>. Beyond work, I stay grounded through yoga, explore creativity in digital art, and value the balance of nutrition and well-being.
+      </p>
+    </div>
+    <div class="about-side">
+      <div class="about-card">
+        <p class="about-card-label">Education</p>
+        <div class="edu-item">
+          <p class="edu-degree">Ph.D. Chemistry — 2024</p>
+          <p class="edu-inst">IISER Pune, India</p>
+          <p class="edu-inst" style="margin-top:3px;font-style:italic;font-size:12px;color:var(--text3);">"Exploring microscopic mechanisms of chemical and biological processes using discrete-state stochastic models"</p>
+        </div>
+        <div class="edu-item" style="margin-top:14px">
+          <p class="edu-degree">M.Sc. Chemistry — 2019</p>
+          <p class="edu-inst">Miranda House, University of Delhi, India</p>
+        </div>
+        <div class="edu-item" style="margin-top:14px">
+          <p class="edu-degree">B.Sc. (Hons.) Chemistry — 2017</p>
+          <p class="edu-inst">Sri Venkateswara College, University of Delhi, India</p>
+        </div>
+      </div>
+      <div class="about-card">
+        <p class="about-card-label">Interests</p>
+        <p class="about-card-text">Yoga & wellness · Digital art · Nutrition & healthy living · AI for science · Interdisciplinary research</p>
+      </div>
+      <div class="about-card">
+        <p class="about-card-label">Featured Essay</p>
+        <p class="about-card-text" style="margin-bottom:10px">Why I chose Data Analytics after a PhD — the personal story behind this transition.</p>
+        <a href="https://sites.google.com/view/bhawakshi-punia/data-analytics-after-a-phd" target="_blank" style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);text-decoration:none;">Read the essay →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-block">
+    <h2 class="contact-heading">Let's work<br><em>together</em></h2>
+    <p class="contact-sub">Open to collaborations in AI for science, computational biology, and health data — or just a good conversation.</p>
+    <div class="contact-links">
+      <a href="mailto:bhawakshipunia@gmail.com" class="btn-primary">bhawakshipunia@gmail.com</a>
+      <a href="https://www.linkedin.com/in/dr-bhawakshi-punia-110a81298/" target="_blank" class="btn-ghost">LinkedIn</a>
+      <a href="https://github.com/cationic-lady" target="_blank" class="btn-ghost">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Dr. Bhawakshi Punia</span>
+  <span class="footer-copy">AI & Computational Scientist · Hyderabad, India</span>
+</footer>
+
+</body>
+</html>
