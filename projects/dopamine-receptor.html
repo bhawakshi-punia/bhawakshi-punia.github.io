@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Predicting pEC50 for Dopamine Receptor Ligands — Dr. Bhawakshi Punia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      oklch(0.2223 0.0060 271.14);
+    --bg2:     oklch(0.2568 0.0076 274.65);
+    --bg3:     oklch(0.2940 0.0130 272.93);
+    --border:  oklch(0.3289 0.0092 268.38 / 0.5);
+    --border2: oklch(0.3289 0.0092 268.38 / 0.8);
+    --text:    oklch(0.9551 0 0);
+    --text2:   oklch(0.7058 0 0);
+    --text3:   oklch(0.4800 0 0);
+    --accent:  oklch(0.6132 0.2294 291.74);
+    --accent2: oklch(0.8003 0.1821 151.71);
+    --accent3: oklch(0.7857 0.1153 246.66);
+  }
+  :root.light {
+    --bg:      oklch(0.9940 0 0);
+    --bg2:     oklch(0.9702 0 0);
+    --bg3:     oklch(0.9540 0.0063 255.48);
+    --border:  oklch(0.9300 0.0094 286.22 / 0.6);
+    --border2: oklch(0.9300 0.0094 286.22 / 1);
+    --text:    oklch(0.1000 0 0);
+    --text2:   oklch(0.4386 0 0);
+    --text3:   oklch(0.5590 0 0);
+    --accent:  oklch(0.5393 0.2713 286.75);
+    --accent2: oklch(0.5828 0.1809 259.73);
+    --accent3: oklch(0.5445 0.1903 259.48);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; line-height: 1.6; min-height: 100vh; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 4rem; background: oklch(from var(--bg) l c h / 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'Lora', serif; font-size: 18px; font-weight: 300; font-style: italic; color: var(--accent); letter-spacing: 0.02em; text-decoration: none; }
+  .nav-back { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text2); text-decoration: none; }
+  .nav-back:hover { color: var(--accent); }
+  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+  .theme-toggle { background: none; border: 1px solid var(--border2); border-radius: 20px; padding: 5px 14px; cursor: pointer; color: var(--text2); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; font-family: 'Plus Jakarta Sans', sans-serif; display: flex; align-items: center; gap: 6px; }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+  .page-wrap { max-width: 800px; margin: 0 auto; padding: 9rem 2rem 6rem; }
+  .proj-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 1rem; }
+  .proj-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent2); }
+  .proj-title { font-family: 'Lora', serif; font-size: clamp(28px, 4vw, 42px); font-weight: 400; line-height: 1.2; color: var(--text); margin-bottom: 1rem; }
+  .proj-title em { font-style: italic; color: var(--accent); }
+  .proj-meta { font-size: 12px; color: var(--text3); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 2rem; }
+  .proj-desc-lead { font-family: 'Lora', serif; font-size: 19px; font-weight: 300; line-height: 1.75; color: var(--text2); margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--border); }
+  .proj-desc-lead strong { color: var(--text); font-weight: 400; }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 3rem; }
+  .tag { font-size: 11px; font-weight: 500; padding: 4px 10px; border: 1px solid var(--border2); border-radius: 20px; color: var(--text3); letter-spacing: 0.04em; }
+
+  .sec-label { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1rem; margin-top: 3rem; }
+  .sec-heading { font-family: 'Lora', serif; font-size: 26px; font-weight: 400; color: var(--text); margin-bottom: 1rem; }
+  .body-text { font-family: 'Lora', serif; font-size: 17px; font-weight: 300; line-height: 1.8; color: var(--text2); margin-bottom: 1rem; }
+  .body-text strong { color: var(--text); font-weight: 400; }
+
+  /* Pipeline */
+  .pipeline { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin: 1.5rem 0; }
+  .p-step { background: var(--bg2); padding: 1.2rem 1.5rem; display: grid; grid-template-columns: 48px 1fr; gap: 1rem; }
+  .p-num { font-family: 'Lora', serif; font-size: 22px; font-weight: 300; color: var(--accent); }
+  .p-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .p-text { font-size: 13.5px; color: var(--text2); line-height: 1.6; }
+
+  /* Results table */
+  .results-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .results-table th { background: var(--bg3); padding: 10px 14px; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); border-bottom: 1px solid var(--border); }
+  .results-table td { background: var(--bg2); padding: 10px 14px; font-size: 13.5px; color: var(--text2); border-bottom: 1px solid var(--border); }
+  .results-table tr:last-child td { border-bottom: none; }
+  .results-table td.highlight { color: var(--text); font-weight: 600; }
+  .results-table .best-row td { background: oklch(from var(--accent) l c h / 0.08); }
+
+  /* Code-style metric */
+  .metric-code { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--accent3); background: var(--bg3); padding: 2px 7px; border-radius: 3px; }
+
+  .pull-quote { border-left: 3px solid var(--accent); padding: 1.25rem 1.75rem; margin: 2.5rem 0; background: var(--bg2); border-radius: 0 4px 4px 0; }
+  .pull-quote p { font-family: 'Lora', serif; font-size: 19px; font-style: italic; font-weight: 300; color: var(--text); line-height: 1.65; }
+
+  .note-box { background: var(--bg2); border: 1px solid var(--border2); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .note-label { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent3); margin-bottom: 8px; }
+  .note-text { font-size: 13.5px; color: var(--text2); line-height: 1.65; }
+
+  .proj-links { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+  .btn-primary { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 11px 24px; background: var(--accent); color: var(--bg); border: none; border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-ghost { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 11px 24px; background: transparent; color: var(--text2); border: 1px solid var(--border2); border-radius: 2px; text-decoration: none; display: inline-block; }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  footer { border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-name { font-family: 'Lora', serif; font-size: 15px; font-style: italic; color: var(--text3); }
+  .footer-copy { font-size: 11px; color: var(--text3); letter-spacing: 0.06em; }
+
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .page-wrap { padding: 7rem 1.5rem 4rem; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Dr. Bhawakshi Punia</a>
+  <div class="nav-right">
+    <a href="../index.html#projects" class="nav-back">← All Projects</a>
+    <button class="theme-toggle" id="themeToggle">
+      <span id="toggleIcon">☀️</span>
+      <span id="toggleLabel">Light</span>
+    </button>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <p class="proj-eyebrow">Drug Discovery · Deep Learning · Cheminformatics</p>
+  <h1 class="proj-title">Predicting <em>pEC50</em> for Dopamine<br>Receptor Ligands</h1>
+  <p class="proj-meta">Personal Project &nbsp;·&nbsp; RDKit · ChEMBL · TensorFlow · Scikit-learn</p>
+
+  <p class="proj-desc-lead">
+    Dopamine receptors are critical therapeutic targets for neurological and psychiatric conditions — from Parkinson's to schizophrenia. This project forecasts <strong>pEC50 values</strong> (the logarithmic concentration needed for half-maximal ligand effect), bridging my PhD-level chemistry expertise with production ML pipelines. Data was compiled from ChEMBL, enriched with molecular descriptors via RDKit, and fed into both classical ML and deep learning models.
+  </p>
+
+  <div class="tag-row">
+    <span class="tag">RDKit</span><span class="tag">ChEMBL</span><span class="tag">TensorFlow</span>
+    <span class="tag">Scikit-learn</span><span class="tag">XGBoost</span><span class="tag">Gradient Boosting</span>
+    <span class="tag">keras_tuner</span><span class="tag">Molecular Fingerprints</span><span class="tag">Feature Engineering</span>
+  </div>
+
+  <p class="sec-label">Background</p>
+  <p class="body-text">pEC50 quantifies binding potency — a critical number in drug discovery. Predicting it computationally from molecular structure allows researchers to screen thousands of candidate compounds <strong>before any lab synthesis</strong>, dramatically narrowing the search space for effective therapeutics.</p>
+
+  <p class="sec-label">Methodology</p>
+  <p class="sec-heading">From ChEMBL to Predictions</p>
+
+  <div class="pipeline">
+    <div class="p-step">
+      <span class="p-num">01</span>
+      <div>
+        <p class="p-title">Custom Dataset Creation</p>
+        <p class="p-text">Extracted SMILES strings and EC50 measurements for all five dopamine receptor subtypes (D1–D5) using the ChEMBL WebResource client. Supplemented with molecular descriptors (MW, LogP, TPSA, rotatable bonds) computed via RDKit.</p>
+      </div>
+    </div>
+    <div class="p-step">
+      <span class="p-num">02</span>
+      <div>
+        <p class="p-title">Exploratory Data Analysis</p>
+        <p class="p-text">Visualised feature relationships and pEC50 distributions across all receptor subtypes. Observed meaningful subtype variation, confirming the dataset was suitable for predictive modelling.</p>
+      </div>
+    </div>
+    <div class="p-step">
+      <span class="p-num">03</span>
+      <div>
+        <p class="p-title">Classical ML — Ensemble Methods</p>
+        <p class="p-text">Tested Random Forest, Gradient Boosting, and XGBoost. Applied both Random Search and Grid Search hyperparameter optimisation. Evaluated on MAE, RMSE, and R².</p>
+      </div>
+    </div>
+    <div class="p-step">
+      <span class="p-num">04</span>
+      <div>
+        <p class="p-title">Deep Learning Extension — ANNs</p>
+        <p class="p-text">Built Artificial Neural Networks with TensorFlow/Keras. Used keras_tuner for automated architecture search. Compared ANN performance against best classical ML baseline.</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="sec-label">Results</p>
+  <p class="sec-heading">Model Comparison</p>
+
+  <table class="results-table">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Train MAE</th>
+        <th>Val MAE</th>
+        <th>Test MAE</th>
+        <th>Test R²</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="best-row">
+        <td class="highlight">Gradient Boosting (Grid Search)</td>
+        <td><span class="metric-code">0.28</span></td>
+        <td><span class="metric-code">0.60</span></td>
+        <td><span class="metric-code">0.63</span></td>
+        <td><span class="metric-code">0.37</span></td>
+      </tr>
+      <tr>
+        <td>Base ANN</td>
+        <td><span class="metric-code">0.69</span></td>
+        <td><span class="metric-code">0.82</span></td>
+        <td><span class="metric-code">0.79</span></td>
+        <td><span class="metric-code">0.21</span></td>
+      </tr>
+      <tr>
+        <td>Tuned ANN (keras_tuner)</td>
+        <td>—</td>
+        <td>—</td>
+        <td><span class="metric-code">~0.78</span></td>
+        <td><span class="metric-code">~0.24</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note-box">
+    <p class="note-label">Benchmark Context</p>
+    <p class="note-text">A validation MAE of 0.60 aligns with published benchmarks in the range of 0.52–0.61 reported in Scientific Reports for comparable dopamine receptor datasets — confirming the model's practical relevance.</p>
+  </div>
+
+  <div class="pull-quote">
+    <p>"Top contributing features: LogP, molecular weight, TPSA, and rotatable bonds — descriptors that encode the 3D structure and pharmacokinetic profile of each molecule."</p>
+  </div>
+
+  <p class="sec-label">Key Observations & Limitations</p>
+  <p class="body-text">Gradient Boosting maintained superior performance throughout, despite notable overfitting even with early-stopping. The deep learning extension reduced overfitting but did not improve accuracy — a common finding when dataset size is the limiting factor.</p>
+  <p class="body-text"><strong>Future direction:</strong> Graph Neural Networks (GNNs) represent the natural next step, as they can directly encode molecular topology rather than relying on hand-crafted descriptors.</p>
+
+  <div class="proj-links">
+    <a href="https://github.com/bhawakshi-punia/ML_pEC50_dopamine_receptor/tree/main" target="_blank" class="btn-primary">View on GitHub ↗</a>
+    <a href="../index.html#projects" class="btn-ghost">← Back to Projects</a>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-name">Dr. Bhawakshi Punia</span>
+  <span class="footer-copy">AI & Computational Scientist · Hyderabad, India</span>
+</footer>
+
+<script>
+  const root = document.getElementById('htmlRoot');
+  const btn = document.getElementById('themeToggle');
+  const icon = document.getElementById('toggleIcon');
+  const label = document.getElementById('toggleLabel');
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light') { root.classList.add('light'); icon.textContent = '🌙'; label.textContent = 'Dark'; }
+  btn.addEventListener('click', () => {
+    const isLight = root.classList.toggle('light');
+    icon.textContent = isLight ? '🌙' : '☀️';
+    label.textContent = isLight ? 'Dark' : 'Light';
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  });
+</script>
+</body>
+</html>

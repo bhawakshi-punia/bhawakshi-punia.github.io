@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detecting Sleep Disorders with ML — Dr. Bhawakshi Punia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      oklch(0.2223 0.0060 271.14);
+    --bg2:     oklch(0.2568 0.0076 274.65);
+    --bg3:     oklch(0.2940 0.0130 272.93);
+    --border:  oklch(0.3289 0.0092 268.38 / 0.5);
+    --border2: oklch(0.3289 0.0092 268.38 / 0.8);
+    --text:    oklch(0.9551 0 0);
+    --text2:   oklch(0.7058 0 0);
+    --text3:   oklch(0.4800 0 0);
+    --accent:  oklch(0.6132 0.2294 291.74);
+    --accent2: oklch(0.8003 0.1821 151.71);
+    --accent3: oklch(0.7857 0.1153 246.66);
+  }
+  :root.light {
+    --bg:      oklch(0.9940 0 0);
+    --bg2:     oklch(0.9702 0 0);
+    --bg3:     oklch(0.9540 0.0063 255.48);
+    --border:  oklch(0.9300 0.0094 286.22 / 0.6);
+    --border2: oklch(0.9300 0.0094 286.22 / 1);
+    --text:    oklch(0.1000 0 0);
+    --text2:   oklch(0.4386 0 0);
+    --text3:   oklch(0.5590 0 0);
+    --accent:  oklch(0.5393 0.2713 286.75);
+    --accent2: oklch(0.5828 0.1809 259.73);
+    --accent3: oklch(0.5445 0.1903 259.48);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; line-height: 1.6; min-height: 100vh; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 4rem; background: oklch(from var(--bg) l c h / 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'Lora', serif; font-size: 18px; font-weight: 300; font-style: italic; color: var(--accent); letter-spacing: 0.02em; text-decoration: none; }
+  .nav-back { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text2); text-decoration: none; }
+  .nav-back:hover { color: var(--accent); }
+  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+  .theme-toggle { background: none; border: 1px solid var(--border2); border-radius: 20px; padding: 5px 14px; cursor: pointer; color: var(--text2); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; font-family: 'Plus Jakarta Sans', sans-serif; display: flex; align-items: center; gap: 6px; }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+  .page-wrap { max-width: 800px; margin: 0 auto; padding: 9rem 2rem 6rem; }
+  .proj-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 1rem; }
+  .proj-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent2); }
+  .proj-title { font-family: 'Lora', serif; font-size: clamp(30px, 4.5vw, 46px); font-weight: 400; line-height: 1.2; color: var(--text); margin-bottom: 1rem; }
+  .proj-title em { font-style: italic; color: var(--accent); }
+  .proj-meta { font-size: 12px; color: var(--text3); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 2rem; }
+  .proj-desc-lead { font-family: 'Lora', serif; font-size: 19px; font-weight: 300; line-height: 1.75; color: var(--text2); margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--border); }
+  .proj-desc-lead strong { color: var(--text); font-weight: 400; }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 3rem; }
+  .tag { font-size: 11px; font-weight: 500; padding: 4px 10px; border: 1px solid var(--border2); border-radius: 20px; color: var(--text3); letter-spacing: 0.04em; }
+
+  .sec-label { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1rem; margin-top: 3rem; }
+  .sec-heading { font-family: 'Lora', serif; font-size: 26px; font-weight: 400; color: var(--text); margin-bottom: 1rem; }
+  .body-text { font-family: 'Lora', serif; font-size: 17px; font-weight: 300; line-height: 1.8; color: var(--text2); margin-bottom: 1rem; }
+  .body-text strong { color: var(--text); font-weight: 400; }
+
+  /* Stats */
+  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin: 1.5rem 0 2.5rem; }
+  .stat-card { background: var(--bg2); padding: 1.25rem; text-align: center; }
+  .stat-num { font-family: 'Lora', serif; font-size: 32px; font-weight: 300; color: var(--accent); line-height: 1; margin-bottom: 5px; }
+  .stat-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); }
+
+  /* Findings */
+  .findings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin: 1.5rem 0; }
+  .finding-card { background: var(--bg2); padding: 1.4rem; }
+  .finding-icon { font-size: 20px; margin-bottom: 8px; }
+  .finding-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+  .finding-text { font-size: 13px; color: var(--text2); line-height: 1.55; }
+
+  /* Pipeline */
+  .pipeline { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin: 1.5rem 0; }
+  .p-step { background: var(--bg2); padding: 1.2rem 1.5rem; display: grid; grid-template-columns: 48px 1fr; gap: 1rem; }
+  .p-num { font-family: 'Lora', serif; font-size: 22px; font-weight: 300; color: var(--accent); }
+  .p-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .p-text { font-size: 13.5px; color: var(--text2); line-height: 1.6; }
+
+  /* Results */
+  .results-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .results-table th { background: var(--bg3); padding: 10px 14px; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); border-bottom: 1px solid var(--border); }
+  .results-table td { background: var(--bg2); padding: 10px 14px; font-size: 13.5px; color: var(--text2); border-bottom: 1px solid var(--border); }
+  .results-table tr:last-child td { border-bottom: none; }
+  .results-table td.highlight { color: var(--accent); font-weight: 600; font-family: 'IBM Plex Mono', monospace; }
+  .best-row td { background: oklch(from var(--accent) l c h / 0.08) !important; }
+
+  .pull-quote { border-left: 3px solid var(--accent); padding: 1.25rem 1.75rem; margin: 2.5rem 0; background: var(--bg2); border-radius: 0 4px 4px 0; }
+  .pull-quote p { font-family: 'Lora', serif; font-size: 19px; font-style: italic; font-weight: 300; color: var(--text); line-height: 1.65; }
+
+  .proj-links { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+  .btn-primary { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 11px 24px; background: var(--accent); color: var(--bg); border: none; border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-ghost { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 11px 24px; background: transparent; color: var(--text2); border: 1px solid var(--border2); border-radius: 2px; text-decoration: none; display: inline-block; }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  footer { border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-name { font-family: 'Lora', serif; font-size: 15px; font-style: italic; color: var(--text3); }
+  .footer-copy { font-size: 11px; color: var(--text3); letter-spacing: 0.06em; }
+
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .page-wrap { padding: 7rem 1.5rem 4rem; }
+    .stat-row { grid-template-columns: 1fr 1fr; }
+    .findings-grid { grid-template-columns: 1fr; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Dr. Bhawakshi Punia</a>
+  <div class="nav-right">
+    <a href="../index.html#projects" class="nav-back">← All Projects</a>
+    <button class="theme-toggle" id="themeToggle">
+      <span id="toggleIcon">☀️</span>
+      <span id="toggleLabel">Light</span>
+    </button>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <p class="proj-eyebrow">Healthcare · ML Classification · EDA</p>
+  <h1 class="proj-title">Detecting Sleep Disorders<br><em>with Machine Learning</em></h1>
+  <p class="proj-meta">Personal Project &nbsp;·&nbsp; Pandas · Scikit-learn · NumPy · Seaborn</p>
+
+  <p class="proj-desc-lead">
+    Can lifestyle data predict sleep disorders? This project demonstrates how machine learning can classify the <strong>likelihood of sleep apnea and insomnia</strong> from everyday biometric and lifestyle features — stress levels, BMI, occupation, age, and more. A full pipeline from exploratory data analysis through model evaluation, delivering 93% accuracy with a stacking classifier.
+  </p>
+
+  <div class="tag-row">
+    <span class="tag">Pandas</span><span class="tag">Scikit-learn</span><span class="tag">NumPy</span>
+    <span class="tag">Seaborn</span><span class="tag">Stacking Classifier</span><span class="tag">Feature Engineering</span>
+    <span class="tag">EDA</span><span class="tag">Classification</span>
+  </div>
+
+  <p class="sec-label">Best Model Performance</p>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <p class="stat-num">93.3%</p>
+      <p class="stat-label">Accuracy</p>
+    </div>
+    <div class="stat-card">
+      <p class="stat-num">93.1%</p>
+      <p class="stat-label">Precision</p>
+    </div>
+    <div class="stat-card">
+      <p class="stat-num">92%</p>
+      <p class="stat-label">Recall</p>
+    </div>
+    <div class="stat-card">
+      <p class="stat-num">93.1%</p>
+      <p class="stat-label">F1-Score</p>
+    </div>
+  </div>
+
+  <p class="sec-label">Dataset</p>
+  <p class="body-text">A Kaggle dataset on sleep health and lifestyle (~364 adult entries) covering three target classes: <strong>No disorder</strong>, <strong>Insomnia</strong> (difficulty falling/staying asleep), and <strong>Sleep Apnea</strong> (pauses in breathing during sleep). Features include occupation, BMI, stress level, heart rate, daily steps, sleep duration, and blood pressure.</p>
+
+  <p class="sec-label">Pipeline</p>
+  <div class="pipeline">
+    <div class="p-step">
+      <span class="p-num">01</span>
+      <div>
+        <p class="p-title">Data Preprocessing</p>
+        <p class="p-text">Handled missing values through imputation. Normalised numerical features. Encoded categorical variables. Created a new engineered feature: blood pressure categories (low / normal / elevated / high).</p>
+      </div>
+    </div>
+    <div class="p-step">
+      <span class="p-num">02</span>
+      <div>
+        <p class="p-title">Exploratory Data Analysis</p>
+        <p class="p-text">Mapped sleep disorder prevalence across occupations, BMI categories, stress levels, age groups, and gender. Identified the strongest predictors before any modelling.</p>
+      </div>
+    </div>
+    <div class="p-step">
+      <span class="p-num">03</span>
+      <div>
+        <p class="p-title">Model Selection & Evaluation</p>
+        <p class="p-text">Tested multiple classifiers and combined them using a stacking approach. Evaluated on accuracy, precision, recall, and F1-score to ensure balanced performance across all three disorder classes.</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="sec-label">Key EDA Findings</p>
+  <div class="findings-grid">
+    <div class="finding-card">
+      <p class="finding-icon">🏥</p>
+      <p class="finding-title">Occupation Patterns</p>
+      <p class="finding-text">Nurses predominantly experience sleep apnea. Teachers and salespeople more commonly report insomnia — suggesting occupational stress profiles map closely to disorder type.</p>
+    </div>
+    <div class="finding-card">
+      <p class="finding-icon">⚖️</p>
+      <p class="finding-title">BMI as a Risk Factor</p>
+      <p class="finding-text">Obese individuals face significantly higher sleep disorder prevalence compared to normal or overweight groups. BMI emerged as one of the two most important features.</p>
+    </div>
+    <div class="finding-card">
+      <p class="finding-icon">😰</p>
+      <p class="finding-title">Stress Predicts Quality</p>
+      <p class="finding-text">High stress levels are the strongest single predictor of poor sleep quality across all age groups and occupations.</p>
+    </div>
+    <div class="finding-card">
+      <p class="finding-icon">🧬</p>
+      <p class="finding-title">Age & Sleep Duration</p>
+      <p class="finding-text">Younger individuals sleep less and report poorer quality. A slight positive correlation exists between age and sleep duration — older adults actually sleep longer on average.</p>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    <p>"The stacking classifier achieved 93.3% accuracy — with gender and BMI as the most important predictive features. Stress management emerges as the most actionable intervention."</p>
+  </div>
+
+  <p class="sec-label">Major Conclusions</p>
+  <p class="body-text"><strong>Stress management</strong> is the single most impactful lever for sleep health. Maintaining a <strong>normal BMI</strong> substantially reduces disorder risk. These findings are actionable: lifestyle modifications offer measurable, predictable improvements in sleep outcomes.</p>
+
+  <p class="sec-label">Limitations & Future Work</p>
+  <p class="body-text">The dataset is small (~364 entries) with occupational imbalance, limiting generalisability. Missing features — sleep efficiency, dietary data, environment — would likely improve model performance. The next step is <strong>transitioning to regression</strong>: predicting sleep efficiency as a continuous variable rather than classifying disorder type.</p>
+
+  <div class="proj-links">
+    <a href="https://github.com/bhawakshi-punia/Sleep_lifestyle_analysis" target="_blank" class="btn-primary">View on GitHub ↗</a>
+    <a href="../index.html#projects" class="btn-ghost">← Back to Projects</a>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-name">Dr. Bhawakshi Punia</span>
+  <span class="footer-copy">AI & Computational Scientist · Hyderabad, India</span>
+</footer>
+
+<script>
+  const root = document.getElementById('htmlRoot');
+  const btn = document.getElementById('themeToggle');
+  const icon = document.getElementById('toggleIcon');
+  const label = document.getElementById('toggleLabel');
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light') { root.classList.add('light'); icon.textContent = '🌙'; label.textContent = 'Dark'; }
+  btn.addEventListener('click', () => {
+    const isLight = root.classList.toggle('light');
+    icon.textContent = isLight ? '🌙' : '☀️';
+    label.textContent = isLight ? 'Dark' : 'Light';
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  });
+</script>
+</body>
+</html>

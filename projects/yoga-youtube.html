@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Decoding Yoga Video Trends on YouTube — Dr. Bhawakshi Punia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      oklch(0.2223 0.0060 271.14);
+    --bg2:     oklch(0.2568 0.0076 274.65);
+    --bg3:     oklch(0.2940 0.0130 272.93);
+    --border:  oklch(0.3289 0.0092 268.38 / 0.5);
+    --border2: oklch(0.3289 0.0092 268.38 / 0.8);
+    --text:    oklch(0.9551 0 0);
+    --text2:   oklch(0.7058 0 0);
+    --text3:   oklch(0.4800 0 0);
+    --accent:  oklch(0.6132 0.2294 291.74);
+    --accent2: oklch(0.8003 0.1821 151.71);
+    --accent3: oklch(0.7857 0.1153 246.66);
+  }
+  :root.light {
+    --bg:      oklch(0.9940 0 0);
+    --bg2:     oklch(0.9702 0 0);
+    --bg3:     oklch(0.9540 0.0063 255.48);
+    --border:  oklch(0.9300 0.0094 286.22 / 0.6);
+    --border2: oklch(0.9300 0.0094 286.22 / 1);
+    --text:    oklch(0.1000 0 0);
+    --text2:   oklch(0.4386 0 0);
+    --text3:   oklch(0.5590 0 0);
+    --accent:  oklch(0.5393 0.2713 286.75);
+    --accent2: oklch(0.5828 0.1809 259.73);
+    --accent3: oklch(0.5445 0.1903 259.48);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; line-height: 1.6; min-height: 100vh; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 4rem; background: oklch(from var(--bg) l c h / 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'Lora', serif; font-size: 18px; font-weight: 300; font-style: italic; color: var(--accent); letter-spacing: 0.02em; text-decoration: none; }
+  .nav-back { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text2); text-decoration: none; }
+  .nav-back:hover { color: var(--accent); }
+  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+  .theme-toggle { background: none; border: 1px solid var(--border2); border-radius: 20px; padding: 5px 14px; cursor: pointer; color: var(--text2); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; font-family: 'Plus Jakarta Sans', sans-serif; display: flex; align-items: center; gap: 6px; }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+  .page-wrap { max-width: 800px; margin: 0 auto; padding: 9rem 2rem 6rem; }
+
+  /* HERO */
+  .proj-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 1rem; }
+  .proj-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent2); }
+  .proj-title { font-family: 'Lora', serif; font-size: clamp(30px, 4.5vw, 46px); font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; color: var(--text); margin-bottom: 1rem; }
+  .proj-title em { font-style: italic; color: var(--accent); }
+  .proj-meta { font-size: 12px; color: var(--text3); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 2rem; }
+  .proj-desc-lead { font-family: 'Lora', serif; font-size: 19px; font-weight: 300; line-height: 1.75; color: var(--text2); margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--border); }
+  .proj-desc-lead strong { color: var(--text); font-weight: 400; }
+
+  /* TAGS */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 3rem; }
+  .tag { font-size: 11px; font-weight: 500; padding: 4px 10px; border: 1px solid var(--border2); border-radius: 20px; color: var(--text3); letter-spacing: 0.04em; }
+
+  /* SECTIONS */
+  .sec-label { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1rem; margin-top: 3rem; }
+  .sec-heading { font-family: 'Lora', serif; font-size: 26px; font-weight: 400; color: var(--text); margin-bottom: 1rem; }
+
+  .body-text { font-family: 'Lora', serif; font-size: 17px; font-weight: 300; line-height: 1.8; color: var(--text2); }
+  .body-text + .body-text { margin-top: 1rem; }
+  .body-text strong { color: var(--text); font-weight: 400; }
+
+  /* CARDS / HIGHLIGHTS */
+  .highlights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin: 2rem 0; }
+  .hl-card { background: var(--bg2); padding: 1.5rem; }
+  .hl-num { font-family: 'Lora', serif; font-size: 32px; font-weight: 300; color: var(--accent); line-height: 1; margin-bottom: 6px; }
+  .hl-label { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text3); margin-bottom: 6px; }
+  .hl-text { font-size: 13.5px; color: var(--text2); line-height: 1.55; }
+
+  /* INSIGHT BLOCKS */
+  .insight-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin: 1.5rem 0; }
+  .insight-item { background: var(--bg2); padding: 1.25rem 1.5rem; display: grid; grid-template-columns: 20px 1fr; gap: 1rem; align-items: start; }
+  .insight-bullet { color: var(--accent); font-size: 16px; padding-top: 2px; }
+  .insight-text { font-size: 14px; color: var(--text2); line-height: 1.6; }
+  .insight-text strong { color: var(--text); }
+
+  /* PULL QUOTE */
+  .pull-quote { border-left: 3px solid var(--accent); padding: 1.25rem 1.75rem; margin: 2.5rem 0; background: var(--bg2); border-radius: 0 4px 4px 0; }
+  .pull-quote p { font-family: 'Lora', serif; font-size: 19px; font-style: italic; font-weight: 300; color: var(--text); line-height: 1.65; }
+
+  /* LINKS */
+  .proj-links { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+  .btn-primary { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 11px 24px; background: var(--accent); color: var(--bg); border: none; border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-ghost { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 11px 24px; background: transparent; color: var(--text2); border: 1px solid var(--border2); border-radius: 2px; text-decoration: none; display: inline-block; }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  footer { border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-name { font-family: 'Lora', serif; font-size: 15px; font-style: italic; color: var(--text3); }
+  .footer-copy { font-size: 11px; color: var(--text3); letter-spacing: 0.06em; }
+
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .page-wrap { padding: 7rem 1.5rem 4rem; }
+    .highlights-grid { grid-template-columns: 1fr; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Dr. Bhawakshi Punia</a>
+  <div class="nav-right">
+    <a href="../index.html#projects" class="nav-back">← All Projects</a>
+    <button class="theme-toggle" id="themeToggle">
+      <span id="toggleIcon">☀️</span>
+      <span id="toggleLabel">Light</span>
+    </button>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <p class="proj-eyebrow">NLP · Trend Analysis · Wellness</p>
+  <h1 class="proj-title">Decoding Yoga Video Trends<br><em>on YouTube</em></h1>
+  <p class="proj-meta">Personal Project &nbsp;·&nbsp; Python · NLTK · Tableau</p>
+
+  <p class="proj-desc-lead">
+    My journey into wellness began during my PhD when a 21-day yoga camp on campus introduced me to the transformative power of yoga. This project combines that personal passion with data science — using NLP and audience behaviour analysis to uncover what actually drives engagement on yoga YouTube channels, and turning those findings into <strong>actionable content strategy insights</strong>.
+  </p>
+
+  <div class="tag-row">
+    <span class="tag">Python</span><span class="tag">NLTK</span><span class="tag">Pandas</span>
+    <span class="tag">CountVectorizer</span><span class="tag">Tableau</span><span class="tag">NLP</span>
+    <span class="tag">Time-Series Analysis</span><span class="tag">Data Visualisation</span>
+  </div>
+
+  <p class="sec-label">Overview</p>
+  <p class="body-text">Using a Kaggle dataset of yoga YouTube video metadata (CC BY-NC-SA 4.0), I analysed video attributes including release dates, duration, views, likes, and comments to understand what makes yoga content perform. The analysis spans three interconnected approaches: time-series engagement trends, correlation analysis between duration and performance metrics, and NLP-driven title keyword analysis.</p>
+
+  <p class="sec-label">Methodology</p>
+  <p class="sec-heading">Three Analytical Lenses</p>
+
+  <div class="insight-list">
+    <div class="insight-item">
+      <span class="insight-bullet">01</span>
+      <div class="insight-text"><strong>Feature Engineering</strong> — Created a custom "Engagement Ratio" metric combining views, likes, and comments to normalise performance across videos of different ages.</div>
+    </div>
+    <div class="insight-item">
+      <span class="insight-bullet">02</span>
+      <div class="insight-text"><strong>Natural Language Processing</strong> — Applied tokenization and lemmatization (NLTK) to video titles, then used CountVectorizer to extract the most impactful keywords by engagement ratio.</div>
+    </div>
+    <div class="insight-item">
+      <span class="insight-bullet">03</span>
+      <div class="insight-text"><strong>Exploratory Data Analysis</strong> — Mapped engagement trends over time, across days of the week, and by video duration to identify structural patterns in the data.</div>
+    </div>
+  </div>
+
+  <p class="sec-label">Key Findings</p>
+  <p class="sec-heading">What the Data Revealed</p>
+
+  <div class="highlights-grid">
+    <div class="hl-card">
+      <p class="hl-num">Mon & Thu</p>
+      <p class="hl-label">Peak Release Days</p>
+      <p class="hl-text">Videos released on Mondays and Thursdays generate significantly higher early engagement.</p>
+    </div>
+    <div class="hl-card">
+      <p class="hl-num">&lt; 35 min</p>
+      <p class="hl-label">Sweet Spot Duration</p>
+      <p class="hl-text">Shorter videos and yoga challenges consistently outperform longer-form content on engagement ratio.</p>
+    </div>
+    <div class="hl-card">
+      <p class="hl-num">2.5×</p>
+      <p class="hl-label">Informal Language Boost</p>
+      <p class="hl-text">Titles using informal, relatable terms ('studio', 'baby', 'welcome') perform over 2.5× better than generic ones.</p>
+    </div>
+    <div class="hl-card">
+      <p class="hl-num">April</p>
+      <p class="hl-label">Highest Release Volume</p>
+      <p class="hl-text">April sees peak content output — likely tied to spring wellness seasonality and new-year momentum.</p>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    <p>"Morning yoga videos dominate engagement — and time-specific keywords like '10 min', '30 min', 'morning' are among the highest-performing title elements."</p>
+  </div>
+
+  <p class="sec-label">Actionable Insights</p>
+  <div class="insight-list">
+    <div class="insight-item">
+      <span class="insight-bullet">→</span>
+      <div class="insight-text"><strong>Leverage challenge formats</strong> — Yoga challenges generate disproportionate engagement; creators should prioritise structured series over one-off videos.</div>
+    </div>
+    <div class="insight-item">
+      <span class="insight-bullet">→</span>
+      <div class="insight-text"><strong>Optimise titles with time-specific keywords</strong> — Phrases like "10 min morning yoga" signal immediate value and perform measurably better.</div>
+    </div>
+    <div class="insight-item">
+      <span class="insight-bullet">→</span>
+      <div class="insight-text"><strong>Embrace informal, relatable language</strong> — Community-feel language in titles outperforms formal or instructional phrasing by a wide margin.</div>
+    </div>
+  </div>
+
+  <div class="proj-links">
+    <a href="https://github.com/bhawakshi-punia/Data_Analysis_Files/tree/main/yoga_yotube_channel" target="_blank" class="btn-primary">View on GitHub ↗</a>
+    <a href="../index.html#projects" class="btn-ghost">← Back to Projects</a>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-name">Dr. Bhawakshi Punia</span>
+  <span class="footer-copy">AI & Computational Scientist · Hyderabad, India</span>
+</footer>
+
+<script>
+  const root = document.getElementById('htmlRoot');
+  const btn = document.getElementById('themeToggle');
+  const icon = document.getElementById('toggleIcon');
+  const label = document.getElementById('toggleLabel');
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light') { root.classList.add('light'); icon.textContent = '🌙'; label.textContent = 'Dark'; }
+  btn.addEventListener('click', () => {
+    const isLight = root.classList.toggle('light');
+    icon.textContent = isLight ? '🌙' : '☀️';
+    label.textContent = isLight ? 'Dark' : 'Light';
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  });
+</script>
+</body>
+</html>

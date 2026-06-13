@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Data Analytics After a PhD — Dr. Bhawakshi Punia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      oklch(0.2223 0.0060 271.14);
+    --bg2:     oklch(0.2568 0.0076 274.65);
+    --bg3:     oklch(0.2940 0.0130 272.93);
+    --border:  oklch(0.3289 0.0092 268.38 / 0.5);
+    --border2: oklch(0.3289 0.0092 268.38 / 0.8);
+    --text:    oklch(0.9551 0 0);
+    --text2:   oklch(0.7058 0 0);
+    --text3:   oklch(0.4800 0 0);
+    --accent:  oklch(0.6132 0.2294 291.74);
+    --accent2: oklch(0.8003 0.1821 151.71);
+    --accent3: oklch(0.7857 0.1153 246.66);
+    --shadow:  0px 2px 8px 0px oklch(0 0 0 / 0.35);
+  }
+  :root.light {
+    --bg:      oklch(0.9940 0 0);
+    --bg2:     oklch(0.9702 0 0);
+    --bg3:     oklch(0.9540 0.0063 255.48);
+    --border:  oklch(0.9300 0.0094 286.22 / 0.6);
+    --border2: oklch(0.9300 0.0094 286.22 / 1);
+    --text:    oklch(0.1000 0 0);
+    --text2:   oklch(0.4386 0 0);
+    --text3:   oklch(0.5590 0 0);
+    --accent:  oklch(0.5393 0.2713 286.75);
+    --accent2: oklch(0.5828 0.1809 259.73);
+    --accent3: oklch(0.5445 0.1903 259.48);
+    --shadow:  0px 2px 8px 0px oklch(0 0 0 / 0.10);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; line-height: 1.6; min-height: 100vh; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 4rem;
+    background: oklch(from var(--bg) l c h / 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Lora', serif; font-size: 18px; font-weight: 300; font-style: italic; color: var(--accent); letter-spacing: 0.02em; text-decoration: none; }
+  .nav-back { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text2); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+  .nav-back:hover { color: var(--accent); }
+  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+  .theme-toggle { background: none; border: 1px solid var(--border2); border-radius: 20px; padding: 5px 14px; cursor: pointer; color: var(--text2); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; font-family: 'Plus Jakarta Sans', sans-serif; display: flex; align-items: center; gap: 6px; }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ARTICLE */
+  .article-wrap { max-width: 720px; margin: 0 auto; padding: 9rem 2rem 6rem; }
+
+  .article-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; }
+  .article-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent2); }
+
+  .article-title { font-family: 'Lora', serif; font-size: clamp(34px, 5vw, 52px); font-weight: 400; line-height: 1.15; letter-spacing: -0.01em; color: var(--text); margin-bottom: 1rem; }
+  .article-title em { font-style: italic; color: var(--accent); }
+
+  .article-meta { font-size: 12px; color: var(--text3); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+
+  .article-body { font-family: 'Lora', serif; font-size: 19px; font-weight: 300; line-height: 1.85; color: var(--text2); }
+  .article-body p + p { margin-top: 1.5rem; }
+  .article-body strong { color: var(--text); font-weight: 500; }
+  .article-body em { color: var(--accent); font-style: italic; }
+
+  .article-h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent2); margin: 3rem 0 1rem; }
+
+  .pull-quote { border-left: 3px solid var(--accent); padding: 1.25rem 1.75rem; margin: 2.5rem 0; background: var(--bg2); border-radius: 0 4px 4px 0; }
+  .pull-quote p { font-family: 'Lora', serif; font-size: 21px; font-style: italic; font-weight: 300; color: var(--text); line-height: 1.65; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-name { font-family: 'Lora', serif; font-size: 15px; font-style: italic; color: var(--text3); }
+  .footer-copy { font-size: 11px; color: var(--text3); letter-spacing: 0.06em; }
+
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .article-wrap { padding: 7rem 1.5rem 4rem; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Dr. Bhawakshi Punia</a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back">← Back to Portfolio</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+      <span id="toggleIcon">☀️</span>
+      <span id="toggleLabel">Light</span>
+    </button>
+  </div>
+</nav>
+
+<div class="article-wrap">
+  <p class="article-eyebrow">Essay · Career Transition</p>
+  <h1 class="article-title">Why I Chose Data Analytics<br><em>After a PhD</em></h1>
+  <p class="article-meta">Dr. Bhawakshi Punia &nbsp;·&nbsp; Theoretical Physical Chemistry → AI & Data Science</p>
+
+  <div class="article-body">
+
+    <p>Why would someone with years of training in theoretical physical chemistry decide to step away from academia and pursue a career in data analytics? It's a question I've been asked more than once — and one I asked myself many times before making the leap.</p>
+
+    <div class="pull-quote">
+      <p>"I realised I wanted a career where I can see the immediate impact of my work."</p>
+    </div>
+
+    <p class="article-h2">What I Loved About My PhD</p>
+
+    <p>My doctoral years at IISER Pune were genuinely fulfilling. I built stochastic models, ran Monte Carlo simulations, and spent long hours analysing data to understand molecular processes at the most fundamental level. I loved the problem-solving — the way a complex biological phenomenon could be reduced to an elegant mathematical framework.</p>
+
+    <p>Presenting findings at international conferences and collaborating with researchers across institutions gave me a taste of the breadth of problems science can address. I published 10 peer-reviewed papers, including a PNAS article, all as first author. Academically, it was a success.</p>
+
+    <p class="article-h2">The Realisation: Academia Isn't the Only Path</p>
+
+    <p>But somewhere in the middle of my PhD, a quieter realisation was forming. Academic research, by its nature, operates on long feedback cycles. A paper takes months or years to move from idea to publication, and its real-world impact is often indirect and hard to trace.</p>
+
+    <p>I wanted to solve problems where I could see the outcome — where a model I built could help someone make a better decision, understand a health risk, or get a clearer answer. That desire for <strong>immediate, measurable impact</strong> is what started pulling me toward data analytics and applied machine learning.</p>
+
+    <div class="pull-quote">
+      <p>"Data analytics offers the opportunity to see the immediate impact of my work — and that matters deeply to me."</p>
+    </div>
+
+    <p class="article-h2">Why Data Analytics?</p>
+
+    <p>The transition made more sense the closer I looked. My PhD had already made me a data analyst in many ways — I was constantly wrangling datasets, building predictive models, and extracting signal from noise. The tools were different, but the thinking was the same.</p>
+
+    <p>Data analytics builds directly on everything I had developed: <strong>mathematical rigour, statistical intuition, and the ability to decompose a complex problem into solvable parts</strong>. What was missing was the applied toolkit — Python for data workflows, machine learning libraries, visualisation and storytelling with tools like Tableau.</p>
+
+    <p>So I started learning. Not from scratch, but by bridging what I already knew into a new domain.</p>
+
+    <p class="article-h2">How I Made the Transition</p>
+
+    <p>I gave myself a deliberate learning agenda: master Python for data science, understand the end-to-end machine learning pipeline, and build projects that solved real problems — not hypothetical ones.</p>
+
+    <p>I built a tool to detect hidden sweeteners in packaged food labels using OCR and NLP. I analysed yoga video engagement patterns on YouTube using NLP and Tableau. I predicted drug potency for dopamine receptor ligands using cheminformatics and deep learning. I classified sleep disorders from lifestyle data using supervised ML.</p>
+
+    <p>Each project was chosen to be <em>genuinely useful</em> — not just a technical exercise. And each one taught me something about translating domain knowledge into a data product that could actually help someone.</p>
+
+    <p class="article-h2">What's Next?</p>
+
+    <p>I joined Aganitha.ai as an AI & Computational Scientist, where I get to work at exactly the intersection I was looking for: applying machine learning and computational methods to problems in biology and drug discovery. The PhD wasn't a detour — it was the foundation.</p>
+
+    <p>If you're a scientist considering a similar path: the skills transfer more than you think. What changes is the pace, the feedback loop, and the proximity to real-world outcomes. For me, that change was worth everything.</p>
+
+  </div>
+</div>
+
+<footer>
+  <span class="footer-name">Dr. Bhawakshi Punia</span>
+  <span class="footer-copy">AI & Computational Scientist · Hyderabad, India</span>
+</footer>
+
+<script>
+  const root = document.getElementById('htmlRoot');
+  const btn = document.getElementById('themeToggle');
+  const icon = document.getElementById('toggleIcon');
+  const label = document.getElementById('toggleLabel');
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light') { root.classList.add('light'); icon.textContent = '🌙'; label.textContent = 'Dark'; }
+  btn.addEventListener('click', () => {
+    const isLight = root.classList.toggle('light');
+    icon.textContent = isLight ? '🌙' : '☀️';
+    label.textContent = isLight ? 'Dark' : 'Light';
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  });
+</script>
+</body>
+</html>
