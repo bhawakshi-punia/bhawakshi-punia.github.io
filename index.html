@@ -1,25 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="htmlRoot">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dr. Bhawakshi Punia — AI & Computational Scientist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  /* ── DARK MODE (default) ── */
   :root {
-    --bg: #0d0e0f;
-    --bg2: #131415;
-    --bg3: #1a1b1c;
-    --border: rgba(255,255,255,0.08);
-    --border2: rgba(255,255,255,0.14);
-    --text: #e8e6e1;
-    --text2: #9a9690;
-    --text3: #5c5a56;
-    --accent: #c8b89a;
-    --accent2: #7eb8a0;
-    --accent3: #a0b4c8;
+    --bg:      oklch(0.2223 0.0060 271.14);
+    --bg2:     oklch(0.2568 0.0076 274.65);
+    --bg3:     oklch(0.2940 0.0130 272.93);
+    --border:  oklch(0.3289 0.0092 268.38 / 0.5);
+    --border2: oklch(0.3289 0.0092 268.38 / 0.8);
+    --text:    oklch(0.9551 0 0);
+    --text2:   oklch(0.7058 0 0);
+    --text3:   oklch(0.4800 0 0);
+    --accent:  oklch(0.6132 0.2294 291.74);
+    --accent2: oklch(0.8003 0.1821 151.71);
+    --accent3: oklch(0.7857 0.1153 246.66);
+    --radius:  1.4rem;
+    --shadow:  0px 2px 8px 0px oklch(0 0 0 / 0.35);
+  }
+
+  /* ── LIGHT MODE ── */
+  :root.light {
+    --bg:      oklch(0.9940 0 0);
+    --bg2:     oklch(0.9702 0 0);
+    --bg3:     oklch(0.9540 0.0063 255.48);
+    --border:  oklch(0.9300 0.0094 286.22 / 0.6);
+    --border2: oklch(0.9300 0.0094 286.22 / 1);
+    --text:    oklch(0.1000 0 0);
+    --text2:   oklch(0.4386 0 0);
+    --text3:   oklch(0.5590 0 0);
+    --accent:  oklch(0.5393 0.2713 286.75);
+    --accent2: oklch(0.5828 0.1809 259.73);
+    --accent3: oklch(0.5445 0.1903 259.48);
+    --shadow:  0px 2px 8px 0px oklch(0 0 0 / 0.10);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,7 +48,7 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Syne', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 15px;
     line-height: 1.6;
     min-height: 100vh;
@@ -50,7 +69,7 @@
   }
 
   .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Lora', serif;
     font-size: 20px;
     font-weight: 300;
     font-style: italic;
@@ -115,7 +134,7 @@
   }
 
   .hero-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Lora', serif;
     font-size: clamp(52px, 8vw, 88px);
     font-weight: 300;
     line-height: 0.95;
@@ -146,7 +165,7 @@
   }
 
   .hero-bio {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Lora', serif;
     font-size: 22px;
     font-weight: 300;
     line-height: 1.65;
@@ -213,7 +232,7 @@
   }
 
   .stat-num {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Lora', serif;
     font-size: 42px;
     font-weight: 300;
     color: var(--accent);
@@ -239,14 +258,14 @@
   }
 
   .sec-num {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Lora', serif;
     font-size: 13px;
     font-style: italic;
     color: var(--text3);
   }
 
   .sec-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Lora', serif;
     font-size: 36px;
     font-weight: 300;
     color: var(--text);
@@ -393,7 +412,7 @@
   }
 
   .skill-item {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Lora', serif;
     font-size: 16px;
     font-weight: 400;
     color: var(--text2);
@@ -440,7 +459,7 @@
   }
 
   .proj-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Lora', serif;
     font-size: 22px;
     font-weight: 400;
     color: var(--text);
@@ -485,7 +504,7 @@
   }
 
   .pub-year {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Lora', serif;
     font-size: 13px;
     font-style: italic;
     color: var(--text3);
@@ -493,7 +512,7 @@
   }
 
   .pub-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Lora', serif;
     font-size: 17px;
     font-weight: 400;
     color: var(--text);
@@ -516,7 +535,7 @@
   }
 
   .about-text {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Lora', serif;
     font-size: 19px;
     font-weight: 300;
     color: var(--text2);
@@ -580,7 +599,7 @@
   }
 
   .contact-heading {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Lora', serif;
     font-size: clamp(36px, 5vw, 56px);
     font-weight: 300;
     line-height: 1.1;
@@ -619,7 +638,7 @@
   }
 
   .footer-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Lora', serif;
     font-size: 15px;
     font-style: italic;
     color: var(--text3);
@@ -684,7 +703,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 1.5rem;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Lora', serif;
     font-size: 36px;
     font-style: italic;
     color: var(--accent);
@@ -693,6 +712,31 @@
   @media (max-width: 700px) {
     .skill-bar-row { grid-template-columns: 1fr; gap: 6px; }
     .skill-bar-pct { text-align: left; }
+  }
+
+  /* --- THEME TOGGLE --- */
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--border2);
+    border-radius: 20px;
+    padding: 5px 14px;
+    cursor: pointer;
+    color: var(--text2);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: border-color 0.2s, color 0.2s;
+    margin-left: 1.5rem;
+  }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* smooth theme transitions */
+  *, *::before, *::after {
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease;
   }
 </style>
     nav { padding: 1rem 1.5rem; }
@@ -721,6 +765,10 @@
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+    <span id="toggleIcon">☀️</span>
+    <span id="toggleLabel">Light</span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -910,7 +958,7 @@
   </div>
 
   <div class="projects-list">
-    <a class="proj-item" href="https://github.com/bhawakshi-punia/ML_pEC50_dopamine_receptor/tree/main" target="_blank">
+    <a class="proj-item" href="projects/dopamine-receptor.html">
       <div>
         <p class="proj-domain">Drug Discovery · Deep Learning · Computational Chemistry</p>
         <p class="proj-title">Predicting pEC50 for Dopamine Receptor Ligands</p>
@@ -927,7 +975,7 @@
       <span class="proj-arrow">↗</span>
     </a>
 
-    <a class="proj-item" href="https://github.com/bhawakshi-punia/sweet_truth" target="_blank">
+    <a class="proj-item" href="projects/sweet-truth-detector.html">
       <div>
         <p class="proj-domain">Computer Vision · NLP · Health</p>
         <p class="proj-title">The Sweet Truth Detector: Hidden Sweeteners in Packaged Foods</p>
@@ -944,7 +992,7 @@
       <span class="proj-arrow">↗</span>
     </a>
 
-    <a class="proj-item" href="https://github.com/bhawakshi-punia/Data_Analysis_Files/tree/main/yoga_yotube_channel" target="_blank">
+    <a class="proj-item" href="projects/yoga-youtube.html">
       <div>
         <p class="proj-domain">NLP · Trend Analysis · Wellness</p>
         <p class="proj-title">Decoding Yoga Video Trends on YouTube</p>
@@ -961,7 +1009,7 @@
       <span class="proj-arrow">↗</span>
     </a>
 
-    <a class="proj-item" href="https://github.com/bhawakshi-punia/Sleep_lifestyle_analysis" target="_blank">
+    <a class="proj-item" href="projects/sleep-disorder-ml.html">
       <div>
         <p class="proj-domain">Healthcare · ML Classification · EDA</p>
         <p class="proj-title">Detecting Sleep Disorders with Machine Learning</p>
@@ -1121,7 +1169,7 @@
       <div class="about-card">
         <p class="about-card-label">Featured Essay</p>
         <p class="about-card-text" style="margin-bottom:10px">Why I chose Data Analytics after a PhD — the personal story behind this transition.</p>
-        <a href="https://sites.google.com/view/bhawakshi-punia/data-analytics-after-a-phd" target="_blank" style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);text-decoration:none;">Read the essay →</a>
+        <a href="why-data-analytics.html" style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);text-decoration:none;">Read the essay →</a>
       </div>
     </div>
   </div>
@@ -1146,5 +1194,19 @@
   <span class="footer-copy">AI & Computational Scientist · Hyderabad, India</span>
 </footer>
 
+<script>
+  const root = document.getElementById('htmlRoot');
+  const btn = document.getElementById('themeToggle');
+  const icon = document.getElementById('toggleIcon');
+  const label = document.getElementById('toggleLabel');
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light') { root.classList.add('light'); icon.textContent = '🌙'; label.textContent = 'Dark'; }
+  btn.addEventListener('click', () => {
+    const isLight = root.classList.toggle('light');
+    icon.textContent = isLight ? '🌙' : '☀️';
+    label.textContent = isLight ? 'Dark' : 'Light';
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  });
+</script>
 </body>
 </html>
