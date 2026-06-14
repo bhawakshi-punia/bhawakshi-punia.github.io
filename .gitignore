@@ -38,5 +38,6 @@ build/
 
 # Local installers and disk images
 *.dmg
-*.md
+# *.md
 bhawakshi_portfolio.html
+changes.md

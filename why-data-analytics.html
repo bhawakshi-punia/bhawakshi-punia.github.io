@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Why Data Analytics After a PhD — Dr. Bhawakshi Punia</title>
+<title>Why Data Science After a PhD — Dr. Bhawakshi Punia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -71,11 +71,60 @@
   .article-body p + p { margin-top: 1.5rem; }
   .article-body strong { color: var(--text); font-weight: 500; }
   .article-body em { color: var(--accent); font-style: italic; }
+  .article-body a { color: var(--accent3); text-decoration: none; border-bottom: 1px solid oklch(from var(--accent3) l c h / 0.45); }
+  .article-body a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
   .article-h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent2); margin: 3rem 0 1rem; }
 
   .pull-quote { border-left: 3px solid var(--accent); padding: 1.25rem 1.75rem; margin: 2.5rem 0; background: var(--bg2); border-radius: 0 4px 4px 0; }
   .pull-quote p { font-family: 'Lora', serif; font-size: 18px; font-style: italic; font-weight: 300; color: var(--text); line-height: 1.65; }
+
+  .tweet-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    width: min(900px, calc(100vw - 3rem));
+    margin: 2rem 0 2.5rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    align-items: start;
+  }
+  .tweet-card {
+    height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0.65rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg2);
+    scrollbar-color: var(--border2) transparent;
+    scrollbar-width: thin;
+  }
+  .tweet-card::-webkit-scrollbar { width: 6px; }
+  .tweet-card::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 999px; }
+  .tweet-grid .twitter-tweet {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: 148% !important;
+    margin: 0 !important;
+    color-scheme: light;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 10px;
+    line-height: 1.35;
+    transform: scale(0.67);
+    transform-origin: top left;
+  }
+  .tweet-grid iframe {
+    max-width: none !important;
+    width: 148% !important;
+    margin: 0 !important;
+    transform: scale(0.67);
+    transform-origin: top left;
+  }
+
+  .closing-note { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+  .closing-note p { font-size: 18px; font-style: italic; color: var(--text); }
+  .llm-note { margin-top: 2.5rem; font-family: 'IBM Plex Mono', monospace; font-size: 11px; line-height: 1.6; color: var(--text3); text-align: center; }
 
   /* FOOTER */
   footer { border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; }
@@ -85,6 +134,18 @@
   @media (max-width: 700px) {
     nav { padding: 1rem 1.5rem; }
     .article-wrap { padding: 7rem 1.5rem 4rem; }
+    .tweet-grid {
+      grid-template-columns: 1fr;
+      width: 100%;
+      margin-left: 0;
+      transform: none;
+    }
+    .tweet-card { height: 380px; }
+    .tweet-grid .twitter-tweet,
+    .tweet-grid iframe {
+      width: 100% !important;
+      transform: none;
+    }
     footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
   }
 </style>
@@ -104,12 +165,12 @@
 
 <div class="article-wrap">
   <p class="article-eyebrow">Essay · Career Transition</p>
-  <h1 class="article-title">Why I Chose Data Analytics<br><em>After a PhD</em></h1>
+  <h1 class="article-title">Why I Chose Data Science<br><em>After a PhD</em></h1>
   <p class="article-meta">Dr. Bhawakshi Punia &nbsp;·&nbsp; Theoretical Physical Chemistry → AI & Data Science</p>
 
   <div class="article-body">
 
-    <p>Why would someone with years of training in theoretical physical chemistry decide to step away from academia and pursue a career in data analytics? It's a question I've been asked more than once — and one I asked myself many times before making the leap.</p>
+    <p>Why would someone with years of training in theoretical physical chemistry decide to step away from academia and pursue a career in data science and AI for science? It's a question I've been asked more than once; and one I asked myself many times before making the leap.</p>
 
     <div class="pull-quote">
       <p>"I realised I wanted a career where I can see the immediate impact of my work."</p>
@@ -117,25 +178,39 @@
 
     <p class="article-h2">What I Loved About My PhD</p>
 
-    <p>My doctoral years at IISER Pune were genuinely fulfilling. I built stochastic models, ran Monte Carlo simulations, and spent long hours analysing data to understand molecular processes at the most fundamental level. I loved the problem-solving — the way a complex biological phenomenon could be reduced to an elegant mathematical framework.</p>
+    <p>My doctoral years at IISER Pune were genuinely fulfilling. I built stochastic models, ran Monte Carlo simulations and spent long hours analysing data to understand molecular processes at the most fundamental level. I loved the problem-solving and the way a complex biological phenomenon could be reduced to an elegant mathematical framework.</p>
 
-    <p>Presenting findings at international conferences and collaborating with researchers across institutions gave me a taste of the breadth of problems science can address. I published 10 peer-reviewed papers, including a PNAS article, all as first author. Academically, it was a success.</p>
+    <p>But what I truly loved was presenting my work. Whether it was at an international conference in South Korea or a workshop in Italy, I found immense satisfaction in communicating my findings. Explaining complex ideas clearly, engaging with audiences, and even being recognised with awards gave me a sense of purpose.</p>
+
+    <div class="tweet-grid" aria-label="Research presentation posts">
+      <div class="tweet-card">
+        <blockquote class="twitter-tweet" data-dnt="true" data-width="320"><p lang="en" dir="ltr">Research presentation highlight</p>&mdash; Bhawakshi Punia (@puniabhawakshi) <a href="https://twitter.com/puniabhawakshi/status/1692372912286929148">August 18, 2023</a></blockquote>
+      </div>
+      <div class="tweet-card">
+        <blockquote class="twitter-tweet" data-dnt="true" data-width="320"><p lang="en" dir="ltr">Research presentation highlight</p>&mdash; Bhawakshi Punia (@puniabhawakshi) <a href="https://twitter.com/puniabhawakshi/status/1600185802830802945">December 6, 2022</a></blockquote>
+      </div>
+      <div class="tweet-card">
+        <blockquote class="twitter-tweet" data-dnt="true" data-width="320"><p lang="en" dir="ltr">Research presentation highlight</p>&mdash; Bhawakshi Punia (@puniabhawakshi) <a href="https://twitter.com/puniabhawakshi/status/1662149258915594241">May 26, 2023</a></blockquote>
+      </div>
+    </div>
+
+    <p>Those experiences, along with collaborations across institutions, gave me a taste of the breadth of problems science can address. I published 10+ peer-reviewed papers, including a PNAS article as first author. Academically, it was a success.</p>
 
     <p class="article-h2">The Realisation: Academia Isn't the Only Path</p>
 
-    <p>But somewhere in the middle of my PhD, a quieter realisation was forming. Academic research, by its nature, operates on long feedback cycles. A paper takes months or years to move from idea to publication, and its real-world impact is often indirect and hard to trace.</p>
+    <p>But somewhere in the middle of my PhD, a quieter realisation was forming. Academic research, by its nature, operates on long feedback cycles. A paper takes months or years to move from idea to publication and its real-world impact is often indirect and hard to trace.</p>
 
-    <p>I wanted to solve problems where I could see the outcome — where a model I built could help someone make a better decision, understand a health risk, or get a clearer answer. That desire for <strong>immediate, measurable impact</strong> is what started pulling me toward data analytics and applied machine learning.</p>
+    <p>I wanted to solve problems where I could see the outcome, where a model I built or the theory I develop could help someone make a better decision, understand a health risk or get a clearer answer. That desire for <strong>immediate, measurable impact</strong> is what started pulling me toward data science and applied machine learning.</p>
 
     <div class="pull-quote">
-      <p>"Data analytics offers the opportunity to see the immediate impact of my work — and that matters deeply to me."</p>
+      <p>"Data science offers the opportunity to see the immediate impact of my work and that matters deeply to me."</p>
     </div>
 
-    <p class="article-h2">Why Data Analytics?</p>
+    <p class="article-h2">Why Data Science?</p>
 
-    <p>The transition made more sense the closer I looked. My PhD had already made me a data analyst in many ways — I was constantly wrangling datasets, building predictive models, and extracting signal from noise. The tools were different, but the thinking was the same.</p>
+    <p>The transition made more sense the closer I looked. My work focused on stochastic modelling of statistical processes, which meant I was constantly immersed in data: analysing, interpreting and developing insights from it. This technical foundation was incredibly rewarding.</p>
 
-    <p>Data analytics builds directly on everything I had developed: <strong>mathematical rigour, statistical intuition, and the ability to decompose a complex problem into solvable parts</strong>. What was missing was the applied toolkit — Python for data workflows, machine learning libraries, visualisation and storytelling with tools like Tableau.</p>
+    <p>Data science builds directly on everything I had developed: <strong>mathematical rigour, statistical intuition and the ability to decompose a complex problem into solvable parts</strong>. What was missing was the applied toolkit: Python for data workflows and machine learning libraries.</p>
 
     <p>So I started learning. Not from scratch, but by bridging what I already knew into a new domain.</p>
 
@@ -143,15 +218,23 @@
 
     <p>I gave myself a deliberate learning agenda: master Python for data science, understand the end-to-end machine learning pipeline, and build projects that solved real problems — not hypothetical ones.</p>
 
-    <p>I built a tool to detect hidden sweeteners in packaged food labels using OCR and NLP. I analysed yoga video engagement patterns on YouTube using NLP and Tableau. I predicted drug potency for dopamine receptor ligands using cheminformatics and deep learning. I classified sleep disorders from lifestyle data using supervised ML.</p>
+    <p>I built <a href="projects/sweet-truth-detector.html">a tool to detect hidden sweeteners in packaged food labels</a> using OCR and NLP. I analysed <a href="projects/yoga-youtube.html">yoga video engagement patterns on YouTube</a> using NLP and Tableau. I <a href="projects/dopamine-receptor.html">predicted drug potency for dopamine receptor ligands</a> using cheminformatics and deep learning. I <a href="projects/sleep-disorder-ml.html">classified sleep disorders from lifestyle data</a> using supervised ML.</p>
 
-    <p>Each project was chosen to be <em>genuinely useful</em> — not just a technical exercise. And each one taught me something about translating domain knowledge into a data product that could actually help someone.</p>
+    <p>Each project was chosen to be <em>genuinely useful</em>, not just a technical exercise. And each one taught me something about translating domain knowledge into a data product that could actually help someone.</p>
 
-    <p class="article-h2">What's Next?</p>
+    <p class="article-h2">Where I Am Now</p>
 
-    <p>I joined Aganitha.ai as an AI & Computational Scientist, where I get to work at exactly the intersection I was looking for: applying machine learning and computational methods to problems in biology and drug discovery. The PhD wasn't a detour — it was the foundation.</p>
+    <p>I am now at <a href="https://www.aganitha.ai/" target="_blank" rel="noopener">Aganitha.ai</a> as an AI & Computational Scientist, where I get to work at exactly the intersection I was looking for: applying machine learning to problems in science. The work brings together scientific reasoning, model development, data analysis and client-facing problem solving, often on questions where the answer has to be useful beyond a notebook.</p>
 
-    <p>If you're a scientist considering a similar path: the skills transfer more than you think. What changes is the pace, the feedback loop, and the proximity to real-world outcomes. For me, that change was worth everything.</p>
+    <p>What excites me most is that I get to truly implement <strong>AI for science</strong>: translating messy, real-world scientific problems into computational workflows, collaborating with clients and interdisciplinary teams, and building solutions that can support better decisions in chemistry, biology and health-adjacent domains. It is also a role that keeps me learning constantly. Every project stretches a different muscle, from understanding a new scientific context to choosing the right modelling approach, communicating results clearly and growing into the kind of scientist who can move comfortably between research depth and real-world impact.</p>
+
+    <p>Ultimately, the PhD wasn't a detour but it was the foundation.</p>
+
+    <div class="closing-note">
+      <p>If you're a scientist considering a similar path: the skills transfer more than you think. What changes is the pace, the feedback loop, and the proximity to real-world outcomes. For me, that change was worth everything.</p>
+    </div>
+
+    <p class="llm-note">This blog post was partly crafted with assistance from LLMs to help articulate my thoughts and structure the content effectively.</p>
 
   </div>
 </div>
@@ -175,5 +258,6 @@
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
   });
 </script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>
