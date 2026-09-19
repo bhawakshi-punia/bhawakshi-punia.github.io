@@ -90,7 +90,7 @@
     align-items: start;
   }
   .tweet-card {
-    height: 320px;
+    height: 220px;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 0.65rem;
@@ -123,6 +123,8 @@
   footer { border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; }
   .footer-name { font-family: 'Lora', serif; font-size: 14px; font-style: italic; color: var(--text3); }
   .footer-copy { font-size: 11px; color: var(--text3); letter-spacing: 0.06em; }
+  .footer-credit { font-size: 11px; color: var(--text3); letter-spacing: 0.04em; }
+  .footer-credit a { color: var(--text3); text-decoration: none; border-bottom: 1px solid oklch(from var(--text3) l c h / 0.4); }
 
   @media (max-width: 700px) {
     nav { padding: 1rem 1.5rem; }
@@ -133,7 +135,7 @@
       margin-left: 0;
       transform: none;
     }
-    .tweet-card { height: 380px; }
+    .tweet-card { height: 280px; }
     .tweet-grid .twitter-tweet,
     .tweet-grid iframe {
       width: 100% !important;
@@ -176,13 +178,13 @@
 
     <div class="tweet-grid" aria-label="Research presentation posts">
       <div class="tweet-card">
-        <blockquote class="twitter-tweet" data-dnt="true" data-width="260"><p lang="en" dir="ltr">Research presentation highlight</p>&mdash; Bhawakshi Punia (@puniabhawakshi) <a href="https://twitter.com/puniabhawakshi/status/1692372912286929148">August 18, 2023</a></blockquote>
+        <blockquote class="twitter-tweet" data-dnt="true" data-width="200"><p lang="en" dir="ltr">Research presentation highlight</p>&mdash; Bhawakshi Punia (@puniabhawakshi) <a href="https://twitter.com/puniabhawakshi/status/1692372912286929148">August 18, 2023</a></blockquote>
       </div>
       <div class="tweet-card">
-        <blockquote class="twitter-tweet" data-dnt="true" data-width="260"><p lang="en" dir="ltr">Research presentation highlight</p>&mdash; Bhawakshi Punia (@puniabhawakshi) <a href="https://twitter.com/puniabhawakshi/status/1600185802830802945">December 6, 2022</a></blockquote>
+        <blockquote class="twitter-tweet" data-dnt="true" data-width="200"><p lang="en" dir="ltr">Research presentation highlight</p>&mdash; Bhawakshi Punia (@puniabhawakshi) <a href="https://twitter.com/puniabhawakshi/status/1600185802830802945">December 6, 2022</a></blockquote>
       </div>
       <div class="tweet-card">
-        <blockquote class="twitter-tweet" data-dnt="true" data-width="260"><p lang="en" dir="ltr">Research presentation highlight</p>&mdash; Bhawakshi Punia (@puniabhawakshi) <a href="https://twitter.com/puniabhawakshi/status/1662149258915594241">May 26, 2023</a></blockquote>
+        <blockquote class="twitter-tweet" data-dnt="true" data-width="200"><p lang="en" dir="ltr">Research presentation highlight</p>&mdash; Bhawakshi Punia (@puniabhawakshi) <a href="https://twitter.com/puniabhawakshi/status/1662149258915594241">May 26, 2023</a></blockquote>
       </div>
     </div>
 
@@ -218,6 +220,8 @@
 
     <p>I am now at <a href="https://www.aganitha.ai/" target="_blank" rel="noopener">Aganitha.ai</a> as an AI & Computational Scientist, where I get to work at exactly the intersection I was looking for: applying machine learning to problems in science. The work brings together scientific reasoning, model development, data analysis and client-facing problem solving, often on questions where the answer has to be useful beyond a notebook.</p>
 
+    <p>The problems span domains — computational chemistry, bioinformatics, health-adjacent data — and rarely look the same twice. Each engagement begins with understanding a scientific question in a client's context, then designing and building workflows that can produce answers useful beyond a slide deck or a notebook. That proximity to real scientific challenges, with stakes attached, is what makes the work feel meaningful.</p>
+
     <p>What excites me most is that I get to truly implement <strong>AI for science</strong>: translating messy, real-world scientific problems into computational workflows, collaborating with clients and interdisciplinary teams, and building solutions that can support better decisions in chemistry, biology and health-adjacent domains. It is also a role that keeps me learning constantly. Every project stretches a different muscle, from understanding a new scientific context to choosing the right modelling approach, communicating results clearly and growing into the kind of scientist who can move comfortably between research depth and real-world impact.</p>
 
     <p>Ultimately, the PhD wasn't a detour but it was the foundation.</p>
@@ -233,7 +237,8 @@
 
 <footer>
   <span class="footer-name">Dr. Bhawakshi Punia</span>
-  <span class="footer-copy">AI & Computational Scientist · Hyderabad, India</span>
+  <span class="footer-copy">AI & Computational Scientist</span>
+  <span class="footer-credit">Built with <a href="https://claude.ai" target="_blank" rel="noopener">Claude</a></span>
 </footer>
 
 <script>

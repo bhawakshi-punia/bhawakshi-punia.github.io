@@ -84,6 +84,13 @@
   .pull-quote { border-left: 3px solid var(--accent); padding: 1.25rem 1.75rem; margin: 2.5rem 0; background: var(--bg2); border-radius: 0 4px 4px 0; }
   .pull-quote p { font-family: 'Lora', serif; font-size: 18px; font-style: italic; font-weight: 300; color: var(--text); line-height: 1.65; }
 
+  .viz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0 2rem; }
+  .viz-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0 2rem; }
+  .viz-item { display: flex; flex-direction: column; }
+  .viz-img { width: 100%; border-radius: 6px; border: 1px solid var(--border); display: block; background: var(--bg2); }
+  .viz-caption { font-size: 11px; color: var(--text3); margin-top: 0.4rem; text-align: center; font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.03em; }
+  .viz-full { width: 100%; border-radius: 6px; border: 1px solid var(--border); display: block; margin: 1.5rem 0; background: var(--bg2); }
+
   .proj-links { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
   .btn-primary { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 11px 24px; background: var(--accent); color: var(--bg); border: none; border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; }
   .btn-primary:hover { opacity: 0.85; }
@@ -93,11 +100,14 @@
   footer { border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; }
   .footer-name { font-family: 'Lora', serif; font-size: 14px; font-style: italic; color: var(--text3); }
   .footer-copy { font-size: 11px; color: var(--text3); letter-spacing: 0.06em; }
+  .footer-credit { font-size: 11px; color: var(--text3); letter-spacing: 0.04em; }
+  .footer-credit a { color: var(--text3); text-decoration: none; border-bottom: 1px solid oklch(from var(--text3) l c h / 0.4); }
 
   @media (max-width: 700px) {
     nav { padding: 1rem 1.5rem; }
     .page-wrap { padding: 7rem 1.5rem 4rem; }
     .stat-row { grid-template-columns: 1fr; }
+    .viz-grid, .viz-grid-3 { grid-template-columns: 1fr; }
     footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
   }
 </style>
@@ -135,6 +145,8 @@
   <p class="sec-label">The Problem</p>
   <p class="body-text">Hidden sugars in packaged food items are often overlooked despite their significant impact on health. Identifying them requires knowing dozens of aliases — chemical names, brand names, and industry terms that most consumers have never heard of. The Sweet Truth Detector makes this identification <strong>automatic, accurate, and accessible</strong>.</p>
 
+  <img class="viz-full" src="../assets/images/sweet-truth/hidden_sweeteners_found_you.png" alt="Conceptual illustration of hidden sweeteners in packaged food" loading="lazy">
+
   <p class="sec-label">Pipeline Architecture</p>
   <p class="sec-heading">End-to-End in Four Stages</p>
 
@@ -169,6 +181,22 @@
     </div>
   </div>
 
+  <p class="sec-label">Sample Outputs</p>
+  <div class="viz-grid-3">
+    <div class="viz-item">
+      <img class="viz-img" src="../assets/images/sweet-truth/bournvita.png" alt="Annotated Bournvita label with detected sweeteners highlighted" loading="lazy">
+      <p class="viz-caption">Bournvita — sweeteners highlighted</p>
+    </div>
+    <div class="viz-item">
+      <img class="viz-img" src="../assets/images/sweet-truth/toothpaste_annotated.jpg" alt="Annotated toothpaste ingredient list with sweeteners detected" loading="lazy">
+      <p class="viz-caption">Toothpaste — sweetener detection</p>
+    </div>
+    <div class="viz-item">
+      <img class="viz-img" src="../assets/images/sweet-truth/herb_mix.png" alt="Annotated herb mix packaging with detected sweetener ingredients" loading="lazy">
+      <p class="viz-caption">Herb mix — sweeteners identified</p>
+    </div>
+  </div>
+
   <p class="sec-label">Model Performance</p>
 
   <div class="stat-row">
@@ -183,6 +211,17 @@
     <div class="stat-card">
       <p class="stat-num">2</p>
       <p class="stat-label">Input Modes (Text + Image)</p>
+    </div>
+  </div>
+
+  <div class="viz-grid">
+    <div class="viz-item">
+      <img class="viz-img" src="../assets/images/sweet-truth/holdoutset.png" alt="Classification report showing precision, recall and F1-scores on hold-out test set" loading="lazy">
+      <p class="viz-caption">Hold-out set classification report</p>
+    </div>
+    <div class="viz-item">
+      <img class="viz-img" src="../assets/images/sweet-truth/hold_out_confusion_matrix.png" alt="Confusion matrix for sweetener detection on hold-out test set" loading="lazy">
+      <p class="viz-caption">Hold-out set confusion matrix</p>
     </div>
   </div>
 
@@ -218,7 +257,8 @@
 
 <footer>
   <span class="footer-name">Dr. Bhawakshi Punia</span>
-  <span class="footer-copy">AI & Computational Scientist · Hyderabad, India</span>
+  <span class="footer-copy">AI & Computational Scientist</span>
+  <span class="footer-credit">Built with <a href="https://claude.ai" target="_blank" rel="noopener">Claude</a></span>
 </footer>
 
 <script>

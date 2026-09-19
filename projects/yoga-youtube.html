@@ -87,6 +87,12 @@
   .pull-quote { border-left: 3px solid var(--accent); padding: 1.25rem 1.75rem; margin: 2.5rem 0; background: var(--bg2); border-radius: 0 4px 4px 0; }
   .pull-quote p { font-family: 'Lora', serif; font-size: 18px; font-style: italic; font-weight: 300; color: var(--text); line-height: 1.65; }
 
+  /* TABLEAU EMBED */
+  .tableau-wrap { position: relative; width: 100%; margin: 1.5rem 0 0.5rem; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .tableau-open { font-size: 11px; color: var(--text3); font-family: 'IBM Plex Mono', monospace; display: block; text-align: right; margin-bottom: 2rem; }
+  .tableau-open a { color: var(--text3); text-decoration: none; border-bottom: 1px solid oklch(from var(--text3) l c h / 0.4); }
+  .tableau-open a:hover { color: var(--accent); border-color: var(--accent); }
+
   /* LINKS */
   .proj-links { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
   .btn-primary { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 11px 24px; background: var(--accent); color: var(--bg); border: none; border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; }
@@ -97,6 +103,8 @@
   footer { border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; }
   .footer-name { font-family: 'Lora', serif; font-size: 14px; font-style: italic; color: var(--text3); }
   .footer-copy { font-size: 11px; color: var(--text3); letter-spacing: 0.06em; }
+  .footer-credit { font-size: 11px; color: var(--text3); letter-spacing: 0.04em; }
+  .footer-credit a { color: var(--text3); text-decoration: none; border-bottom: 1px solid oklch(from var(--text3) l c h / 0.4); }
 
   @media (max-width: 700px) {
     nav { padding: 1rem 1.5rem; }
@@ -202,6 +210,42 @@
     </div>
   </div>
 
+  <p class="sec-label">Interactive Dashboard</p>
+  <div class="tableau-wrap">
+    <div class='tableauPlaceholder' id='viz1789836911677' style='position: relative'>
+      <noscript>
+        <a href='#'><img alt='An exploratory data analysis project to understand YouTube channel metrics and their influence on the viewer engagement.' src='https://public.tableau.com/static/images/yo/yoga_youtube/Story1/1_rss.png' style='border: none' /></a>
+      </noscript>
+      <object class='tableauViz' style='display:none;'>
+        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+        <param name='embed_code_version' value='3' />
+        <param name='site_root' value='' />
+        <param name='name' value='yoga_youtube&#47;Story1' />
+        <param name='tabs' value='no' />
+        <param name='toolbar' value='yes' />
+        <param name='static_image' value='https://public.tableau.com/static/images/yo/yoga_youtube/Story1/1.png' />
+        <param name='animate_transition' value='yes' />
+        <param name='display_static_image' value='yes' />
+        <param name='display_spinner' value='yes' />
+        <param name='display_overlay' value='yes' />
+        <param name='display_count' value='yes' />
+        <param name='language' value='en-US' />
+      </object>
+    </div>
+    <script type='text/javascript'>
+      var divElement = document.getElementById('viz1789836911677');
+      var vizElement = divElement.getElementsByTagName('object')[0];
+      var containerWidth = divElement.parentElement.offsetWidth || 900;
+      var ratio = 991 / 1016;
+      vizElement.style.width = containerWidth + 'px';
+      vizElement.style.height = Math.round(containerWidth * ratio) + 'px';
+      var scriptElement = document.createElement('script');
+      scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+      vizElement.parentNode.insertBefore(scriptElement, vizElement);
+    </script>
+  </div>
+  <span class="tableau-open"><a href="https://public.tableau.com/shared/DN5TQZT88" target="_blank" rel="noopener">Open full screen in Tableau ↗</a></span>
+
   <div class="proj-links">
     <a href="https://github.com/bhawakshi-punia/Data_Analysis_Files/tree/main/yoga_yotube_channel" target="_blank" class="btn-primary">View on GitHub ↗</a>
     <a href="../index.html#projects" class="btn-ghost">← Back to Projects</a>
@@ -211,7 +255,8 @@
 
 <footer>
   <span class="footer-name">Dr. Bhawakshi Punia</span>
-  <span class="footer-copy">AI & Computational Scientist · Hyderabad, India</span>
+  <span class="footer-copy">AI & Computational Scientist</span>
+  <span class="footer-credit">Built with <a href="https://claude.ai" target="_blank" rel="noopener">Claude</a></span>
 </footer>
 
 <script>

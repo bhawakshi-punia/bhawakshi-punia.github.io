@@ -84,6 +84,12 @@
   .pull-quote { border-left: 3px solid var(--accent); padding: 1.25rem 1.75rem; margin: 2.5rem 0; background: var(--bg2); border-radius: 0 4px 4px 0; }
   .pull-quote p { font-family: 'Lora', serif; font-size: 18px; font-style: italic; font-weight: 300; color: var(--text); line-height: 1.65; }
 
+  .viz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0 2rem; }
+  .viz-item { display: flex; flex-direction: column; }
+  .viz-img { width: 100%; border-radius: 6px; border: 1px solid var(--border); display: block; background: var(--bg2); }
+  .viz-caption { font-size: 11px; color: var(--text3); margin-top: 0.4rem; text-align: center; font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.03em; }
+  .viz-full { width: 100%; border-radius: 6px; border: 1px solid var(--border); display: block; margin: 1.5rem 0; background: var(--bg2); }
+
   .note-box { background: var(--bg2); border: 1px solid var(--border2); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
   .note-label { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent3); margin-bottom: 8px; }
   .note-text { font-size: 13.5px; color: var(--text2); line-height: 1.65; }
@@ -97,11 +103,14 @@
   footer { border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; }
   .footer-name { font-family: 'Lora', serif; font-size: 14px; font-style: italic; color: var(--text3); }
   .footer-copy { font-size: 11px; color: var(--text3); letter-spacing: 0.06em; }
+  .footer-credit { font-size: 11px; color: var(--text3); letter-spacing: 0.04em; }
+  .footer-credit a { color: var(--text3); text-decoration: none; border-bottom: 1px solid oklch(from var(--text3) l c h / 0.4); }
 
   @media (max-width: 700px) {
     nav { padding: 1rem 1.5rem; }
     .page-wrap { padding: 7rem 1.5rem 4rem; }
     footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    .viz-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -171,6 +180,18 @@
     </div>
   </div>
 
+  <p class="sec-label">EDA Visualisations</p>
+  <div class="viz-grid">
+    <div class="viz-item">
+      <img class="viz-img" src="../assets/images/dopamine-receptor/MW_vs_LogP.png" alt="Molecular weight vs LogP scatter plot across all ligands" loading="lazy">
+      <p class="viz-caption">Molecular weight vs LogP across all ligands</p>
+    </div>
+    <div class="viz-item">
+      <img class="viz-img" src="../assets/images/dopamine-receptor/pEC50_vs_target_name.png" alt="pEC50 value distribution across dopamine receptor subtypes D1–D5" loading="lazy">
+      <p class="viz-caption">pEC50 distribution across receptor subtypes (D1–D5)</p>
+    </div>
+  </div>
+
   <p class="sec-label">Results</p>
   <p class="sec-heading">Model Comparison</p>
 
@@ -209,6 +230,8 @@
     </tbody>
   </table>
 
+  <img class="viz-full" src="../assets/images/dopamine-receptor/train_val_scores.png" alt="Train, validation and test scores across all classical ML models" loading="lazy">
+
   <div class="note-box">
     <p class="note-label">Benchmark Context</p>
     <p class="note-text">A validation MAE of 0.60 aligns with published benchmarks in the range of 0.52–0.61 reported in Scientific Reports for comparable dopamine receptor datasets — confirming the model's practical relevance.</p>
@@ -216,6 +239,17 @@
 
   <div class="pull-quote">
     <p>"Top contributing features: LogP, molecular weight, TPSA, and rotatable bonds — descriptors that encode the 3D structure and pharmacokinetic profile of each molecule."</p>
+  </div>
+
+  <div class="viz-grid">
+    <div class="viz-item">
+      <img class="viz-img" src="../assets/images/dopamine-receptor/final_image.png" alt="Train, validation and test scores comparing GS-tuned Gradient Boosting against ANN models" loading="lazy">
+      <p class="viz-caption">GS-tuned GB vs ANN models — MAE, RMSE, R²</p>
+    </div>
+    <div class="viz-item">
+      <img class="viz-img" src="../assets/images/dopamine-receptor/feature_importance.png" alt="Feature importance bar chart — top predictors for pEC50" loading="lazy">
+      <p class="viz-caption">Feature importance — LogP, MW, TPSA, rotatable bonds</p>
+    </div>
   </div>
 
   <p class="sec-label">Key Observations & Limitations</p>
@@ -231,7 +265,8 @@
 
 <footer>
   <span class="footer-name">Dr. Bhawakshi Punia</span>
-  <span class="footer-copy">AI & Computational Scientist · Hyderabad, India</span>
+  <span class="footer-copy">AI & Computational Scientist</span>
+  <span class="footer-credit">Built with <a href="https://claude.ai" target="_blank" rel="noopener">Claude</a></span>
 </footer>
 
 <script>
