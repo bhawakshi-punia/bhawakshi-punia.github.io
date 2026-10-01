@@ -40,3 +40,8 @@ build/
 *.dmg
 _private/
 V2 Final - Aganitha_Bhawakshi_Punia_Capability_Profile (1).pdf
+claude_design_prompt.md
+
+# Archived site versions & design source files (local only)
+_archive/
+_dev/design/

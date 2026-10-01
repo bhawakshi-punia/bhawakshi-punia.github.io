@@ -18,13 +18,49 @@
 - in the publications section, add a link to go to my google scholar profile 
 - replace 'let's work together' section to 'let's connect' instead. change the subtext accordingly. -->
 
-- add the associated image to each project, images are present in `/Users/bhawakshipunia/data_science/portfolio/assets/images/main-page`
 
-## `why-data-analytics.html`
+<!--
+  ╔══════════════════════════════════════════════════╗
+  ║           PORTFOLIO CONFIG — UPDATE HERE         ║
+  ╠══════════════════════════════════════════════════╣
+  ║ Industry start date  : 2025-03-01 (Aganitha)    ║
+  ║ Publications count   : 10+ (all first-author)   ║
+  ║ AI/ML projects count : 4+                       ║
+  ║ CV file              : aug_2026_CV.pdf           ║
+  ║ Google Scholar       : see #publications link    ║
+  ║                                                  ║
+  ║ TODO: Update aug_2026_CV.pdf — current version  ║
+  ║   still links to Google Sites. Replace with new  ║
+  ║   GitHub Pages URL (bhawakshi-punia.github.io)   ║
+  ║   before sharing the CV widely.                  ║
+  ║                                                  ║
+  ║ To add a new project : copy projects/*.html,     ║
+  ║   add card to #projects section, add image to    ║
+  ║   assets/images/projects/, commit & push.        ║
+  ╚══════════════════════════════════════════════════╝
+-->
+<!-- NAV -->
 
-- reduce the size of the twitter post placeholders. They can come as 3x1 in a single row. Arrange them accordingly.
-- add more details to the "Where am I now" section. focus on:
-  - the type of work i get to do
-  - real-world impactful projects and problems, collaborating with clients
-  - truly implementing "AI for science"
-  - continuously learning and growing while working 
+---
+ 
+# some points of the top of my head:
+- left/right collapsible panel for the sections for easy navigation
+- check how it looks on phone
+- main page to have:
+  - my current position and work that i do
+  - my journey link
+  - link to some previous projects: specifically sweet truth and pec50
+  - let's connect section
+  - detailed + short CV
+    - detailed CV: all publications, conferences, awards
+    - short CV: only current work, experiences, key contributions, 1 page
+- other pages:
+  - about phd journey -> publications (basically the work I did)
+  - individual project pages: 2 are highlighted (personal ones), others are just mentioned
+
+# prompts
+
+@"Portfolio Wireframes.dc.html" would like to update my current website look as per this attached wireframe i largely finalised. 
+
+would you need any visual style guide too to begin adapting the changes?
+i want to know the next step. 
