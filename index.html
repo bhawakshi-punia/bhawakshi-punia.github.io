@@ -215,41 +215,45 @@
   .ladder div.now { border-color: var(--accent); background: color-mix(in oklch, var(--accent) 12%, transparent); }
   .ladder small { display: block; color: var(--text3); font-size: 10.5px; margin-top: 2px; }
   /* notebook essay */
-  .nb { position: relative; background-color: var(--paper); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 22px 22px; border: 1px solid var(--border2); border-radius: 3px 8px 8px 3px; padding: 22px 26px 24px 62px; box-shadow: var(--shadow); color: var(--text); }
-  .nb::before { content: ''; position: absolute; left: 14px; top: 6px; bottom: 6px; width: 16px; background: radial-gradient(circle at 8px 13px, var(--bg) 0 5px, var(--border2) 5.5px 6.5px, transparent 7px) repeat-y; background-size: 16px 26px; }
-  .nb::after { content: ''; position: absolute; left: 46px; top: 0; bottom: 0; width: 1.5px; background: var(--margin); }
+  .nb { position: relative; background-color: var(--paper); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 22px 22px; border: 1px solid var(--border2); border-radius: 3px 8px 8px 3px; padding: clamp(14px,3cqi,22px) clamp(12px,3.5cqi,26px) clamp(16px,3.5cqi,24px) var(--nbm); box-shadow: var(--shadow); color: var(--text); }
+  .nb::before { content: ''; position: absolute; left: calc(var(--nbm) / 2 - 17px); top: 6px; bottom: 6px; width: 16px; background: radial-gradient(circle at 8px 13px, var(--bg) 0 5px, var(--border2) 5.5px 6.5px, transparent 7px) repeat-y; background-size: 16px 26px; }
+  .nb::after { content: ''; position: absolute; left: calc(var(--nbm) - 16px); top: 0; bottom: 0; width: 1.5px; background: var(--margin); }
   .nb .hand { font-family: 'Caveat', cursive; color: var(--pen); }
   .nb mark { background: linear-gradient(transparent 38%, var(--marker) 38% 88%, transparent 88%); color: inherit; padding: 0 2px; }
   .nb a { color: var(--pen); border-bottom: 1.5px solid var(--pen); cursor: pointer; }
   .nb-teaser { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 8px 18px; align-items: center; cursor: pointer; margin: 4px 0 6px; }
   .nb-teaser:hover { border-color: var(--accent); }
   .nb-eyebrow { font-size: 10.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--text3); }
-  .nb-title { font-family: 'Caveat', cursive; font-weight: 700; font-size: 38px; line-height: 1; color: var(--text); }
+  .nb-title { font-family: 'Caveat', cursive; font-weight: 700; font-size: clamp(26px, 6.5cqi, 38px); line-height: 1; color: var(--text); }
   .nb-title u { text-decoration: none; background: linear-gradient(transparent 55%, var(--marker) 55% 92%, transparent 92%); }
   .nb-sub { font-size: 13px; color: var(--text2); }
-  .nb-open { font-family: 'Caveat', cursive; font-size: 22px; font-weight: 700; color: var(--pen); white-space: nowrap; border: 2px solid var(--pen); border-radius: 255px 14px 225px 14px/14px 225px 14px 255px; padding: 4px 16px; background: transparent; cursor: pointer; }
+  .nb-open { font-family: 'Caveat', cursive; font-size: clamp(18px, 4cqi, 22px); font-weight: 700; color: var(--pen); white-space: nowrap; border: 2px solid var(--pen); border-radius: 255px 14px 225px 14px/14px 225px 14px 255px; padding: 4px 16px; background: transparent; cursor: pointer; }
   .nb-full { display: flex; flex-direction: column; gap: 18px; margin-top: 6px; }
   .nb-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
-  .nb-bar { position: sticky; top: 12px; z-index: 5; display: flex; align-items: center; gap: 4px; overflow-x: auto; scrollbar-width: none; padding: 5px 6px 5px 10px; background: var(--paper); border: 1px solid var(--border2); border-radius: 20px; box-shadow: 0 6px 18px oklch(0 0 0 / 0.18); }
-  .nb-bar::-webkit-scrollbar { display: none; }
-  .nb-bar .lbl { font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text3); margin-right: 4px; white-space: nowrap; }
-  .nb-bar button { font: 600 11.5px 'Plus Jakarta Sans', sans-serif; color: var(--text2); background: transparent; border: none; padding: 4px 9px; border-radius: 12px; cursor: pointer; white-space: nowrap; }
+  .nb-bar { position: sticky; top: 12px; z-index: 5; display: flex; align-items: center; gap: 3px; min-width: 0; padding: 5px 10px 5px 5px; background: var(--paper); border: 1px solid var(--border2); border-radius: 20px; box-shadow: 0 6px 18px oklch(0 0 0 / 0.18); }
+  .nb-bar button { display: flex; align-items: center; gap: 5px; flex: none; font: 600 11.5px 'Plus Jakarta Sans', sans-serif; color: var(--text2); background: transparent; border: none; padding: 4px 8px; border-radius: 12px; cursor: pointer; white-space: nowrap; }
   .nb-bar button:hover { background: var(--bg3); color: var(--text); }
-  .nb-bar .x { margin-left: auto; color: var(--pen); border: 1.5px solid var(--pen); }
+  .nb-bar button b { display: grid; place-items: center; width: 17px; height: 17px; border-radius: 50%; border: 1px solid var(--border2); font-size: 10px; font-weight: 700; }
+  .nb-bar button.on { color: var(--pen); }
+  .nb-bar button.on b { background: var(--pen); border-color: var(--pen); color: var(--paper); }
+  .nb-bar .x { color: var(--pen); border: 1.5px solid var(--pen); gap: 4px; }
+  .nb-bar .x i { font-style: normal; }
+  .nb-bar .sep { flex: none; width: 1px; height: 18px; background: var(--border2); margin: 0 3px; }
+  .nb-bar .cur { display: none; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11.5px; font-weight: 600; color: var(--pen); margin-left: 4px; }
   .nb-end { display: flex; justify-content: center; padding-top: 4px; }
   @media (max-width: 880px) { .nb-bar { top: 64px; } }
   .nb-sec { scroll-margin-top: 120px; display: grid; grid-template-columns: minmax(0,1fr) 140px; gap: 18px; align-items: start; }
-  .nb-sec h4 { font-family: 'Caveat', cursive; font-weight: 700; font-size: 25px; line-height: 1; color: var(--pen); margin-bottom: 6px; }
-  .nb-sec h4 span { color: var(--text3); font-size: 19px; margin-right: 4px; }
-  .nb-lines { display: block; font-size: 14px; line-height: 1.55; color: var(--text2); }
+  .nb-sec h4 { font-family: 'Caveat', cursive; font-weight: 700; font-size: clamp(21px, 4.5cqi, 25px); line-height: 1; color: var(--pen); margin-bottom: 6px; }
+  .nb-sec h4 span { color: var(--text3); font-size: .8em; margin-right: 5px; }
+  .nb-lines { display: block; font-size: clamp(13px, 2.5cqi, 14.5px); line-height: 1.55; color: var(--text2); }
   ul.nb-lines, .nb-cols .nb-lines { display: flex; flex-direction: column; gap: 5px; }
   .nb-lines b { color: var(--text); font-weight: 600; }
   .nb-lines li { list-style: none; position: relative; padding-left: 16px; }
   .nb-lines li::before { content: '–'; position: absolute; left: 0; color: var(--pen); }
-  .nb-margin { font-family: 'Caveat', cursive; font-size: 19px; line-height: 1.1; color: var(--pen); transform: rotate(-2deg); padding-top: 26px; }
-  .nb-quote { font-family: 'Caveat', cursive; font-size: 24px; line-height: 1.15; color: var(--text); padding: 2px 0 2px 12px; border-left: 3px solid var(--pen); }
-  .nb-eq { display: grid; grid-template-columns: auto 1fr auto; white-space: nowrap; overflow-x: auto; gap: 4px 12px; align-items: baseline; font-family: 'Caveat', cursive; font-size: 21px; color: var(--text); padding: 8px 12px; border: 1.5px dashed var(--border2); border-radius: 4px; margin-top: 4px; }
-  .nb-eq .k { color: var(--text3); font-size: 17px; }
+  .nb-margin { font-family: 'Caveat', cursive; font-size: clamp(16px, 3.5cqi, 19px); line-height: 1.1; color: var(--pen); transform: rotate(-2deg); padding-top: 26px; }
+  .nb-quote { font-family: 'Caveat', cursive; font-size: clamp(19px, 4.5cqi, 24px); line-height: 1.15; color: var(--text); padding: 2px 0 2px 12px; border-left: 3px solid var(--pen); }
+  .nb-eq { display: grid; grid-template-columns: auto minmax(0,1fr) auto; gap: 4px 12px; align-items: baseline; font-family: 'Caveat', cursive; font-size: clamp(17px, 3.8cqi, 21px); color: var(--text); padding: 8px 12px; border: 1.5px dashed var(--border2); border-radius: 4px; margin-top: 4px; }
+  .nb-eq .k { color: var(--text3); font-size: .82em; }
   .nb-eq .v { color: var(--pen); font-weight: 700; }
   .nb-cols { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
   .nb-cols > div { border: 1.5px solid var(--border2); border-radius: 4px; padding: 8px 12px; background: var(--paper); }
@@ -260,12 +264,22 @@
   .nb-sticky b { font-size: 13px; line-height: 1.25; color: var(--text); }
   .nb-sticky span { font-size: 11.5px; color: var(--text2); }
   .nb-sticky i { font-family: 'Caveat', cursive; font-style: normal; font-size: 17px; color: var(--pen); }
-  .nb-box { align-self: flex-start; font-family: 'Caveat', cursive; font-size: 30px; font-weight: 700; line-height: 1.05; color: var(--text); padding: 10px 18px; border: 2px solid var(--pen); outline: 2px solid var(--pen); outline-offset: 3px; border-radius: 2px; }
+  .nb-box { align-self: flex-start; font-family: 'Caveat', cursive; font-size: clamp(22px, 5.5cqi, 30px); font-weight: 700; line-height: 1.05; color: var(--text); padding: 10px 18px; border: 2px solid var(--pen); outline: 2px solid var(--pen); outline-offset: 3px; border-radius: 2px; }
   .nb-box span { color: var(--pen); }
   .nb-disc { font-size: 11px; color: var(--text3); }
   .jnote { font-family: 'Caveat', cursive; font-size: 17px; font-weight: 700; color: var(--pen); margin-top: 3px; }
-  @container nbw (max-width: 640px) { .nb-sec { grid-template-columns: 1fr; gap: 0; } .nb-margin { padding-top: 6px; } .nb-cols { grid-template-columns: 1fr; } .nb-teaser { grid-template-columns: 1fr; } .nb { padding: 18px 16px 20px 50px; } .nb::after { left: 38px; } .nb::before { left: 9px; } .nb-title { font-size: 32px; } }
+  @container nbw (max-width: 640px) {
+    .nb-sec { grid-template-columns: minmax(0,1fr); gap: 0; } .nb-margin { padding-top: 6px; } .nb-cols { grid-template-columns: minmax(0,1fr); } .nb-teaser { grid-template-columns: minmax(0,1fr); }
+    .nb-bar button span { display: none; } .nb-bar button { padding: 4px; } .nb-bar .x { padding: 4px 9px; } .nb-bar button b { width: 22px; height: 22px; font-size: 11px; } .nb-bar { flex-wrap: wrap; border-radius: 16px; } .nb-bar .cur { display: block; flex-basis: 100%; margin: 1px 0 0 6px; font-size: 11px; }
+  }
+  @container nbw (max-width: 420px) {
+    .nb-eq { grid-template-columns: minmax(0,1fr) auto; } .nb-eq .k { grid-column: 1 / -1; margin-top: 2px; }
+    .nb-stickies { grid-template-columns: minmax(0,1fr); } .nb-sticky { transform: none; }
+    .nb-bar { gap: 2px; } .nb-bar button { padding: 2px; } .nb-bar button b { width: 20px; height: 20px; }
+  }
+  @container nbw (max-width: 280px) { .nb-bar .x i { display: none; } }
   .nbw { container: nbw / inline-size; }
+  .nb { --nbm: clamp(36px, 9cqi, 62px); }
 
   /* ============ MOBILE ============ */
   #mob { display: none; }
@@ -303,7 +317,11 @@
   .mrow .mt b { font-size: 14px; }
   .mrow .mm { font-size: 14px; cursor: pointer; }
   .mrow .recs { flex-direction: row; flex-wrap: wrap; align-items: flex-start; padding-top: 5px; }
-  .mrow .jdetail { margin-top: 8px; }
+  .mrow .jdetail { margin-top: 8px; padding: 12px 10px; min-width: 0; }
+  .mrow .jdetail .nbw { margin: 0 -10px; }
+  #mob .nbw, #mob .pwide, #mob .popen { scroll-margin-top: 66px; }
+  .mrow .ladder { flex-direction: column; align-items: stretch; }
+  .mrow .ladder div { min-height: 0 !important; }
   .tabs { position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; display: flex; justify-content: space-around; padding: 8px 0 max(10px, env(safe-area-inset-bottom)); background: var(--bg); border-top: 1px solid var(--border); }
   .tab { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; color: var(--text3); cursor: pointer; background: none; border: none; min-width: 64px; min-height: 44px; justify-content: center; }
   .tab i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
@@ -551,6 +569,7 @@ const JOURNEY = [
   { y:'2025 →', slug:'2025', m:'AI & Computational Scientist', w:'<a href="https://www.aganitha.ai/" target="_blank">Aganitha.ai</a>', recs:[], body:'Applying AI/ML to problems in chemistry and biology.', ladder:true }
 ];
 const LADDER = [['Tech Scientist – Intern','Mar – Aug 2025'],['Jr. AI & Computational Scientist 1','Sep 2025 – Mar 2026'],['Jr. AI & Computational Scientist 2','Mar 2026 – present',1]];
+const NB_SECTIONS = ['What I loved','The realisation','Why data science','The transition','Where I am now'];
 const NB_PROJECTS = [
   ['swt','The Sweet Truth Detector','OCR + NLP · hidden sweeteners in food labels','-1.5deg'],
   ['yoga','Yoga trends on YouTube','NLP + Tableau · engagement patterns','1deg'],
@@ -567,23 +586,23 @@ function notebookHTML() {
   </div></div>`;
   return `<div class="nbw"><div class="nb"><div class="nb-full">
     <div class="nb-head"><div><span class="nb-eyebrow">From my notebook</span><div class="nb-title" style="margin-top:4px">Why I chose <u>data science</u> after a PhD</div></div></div>
-    <div class="nb-bar"><span class="lbl">Jump to</span>${['What I loved','The realisation','Why data science','The transition','Where I am now'].map((l,i)=>`<button data-nbgo="${i}">${l}</button>`).join('')}<button class="x" data-essay>✕ close</button></div>
-    <div class="nb-lines" style="font-size:14.5px">Why would someone trained in <b>theoretical physical chemistry</b> step away from academia for <b>data science &amp; AI for science</b>? I've been asked more than once, and I asked myself many times before making the leap.</div>
+    <div class="nb-bar"><button class="x" data-essay aria-label="Close the notebook">✕<i>close</i></button><span class="sep"></span>${NB_SECTIONS.map((l,i)=>`<button data-nbgo="${i}" title="${l}"><b>${i+1}</b><span>${l}</span></button>`).join('')}<span class="cur"></span></div>
+    <div class="nb-lines">Why would someone trained in <b>theoretical physical chemistry</b> step away from academia for <b>data science &amp; AI for science</b>? I've been asked more than once, and I asked myself many times before making the leap.</div>
 
-    <div class="nb-sec"><div><h4>What I loved about my PhD</h4><ul class="nb-lines">
+    <div class="nb-sec"><div><h4><span>1.</span>What I loved about my PhD</h4><ul class="nb-lines">
       <li>Built <mark>stochastic models</mark> and ran <mark>Monte Carlo simulations</mark> at IISER Pune: problems first worked out on paper, then checked on the computer.</li>
       <li>Reducing a complex biological phenomenon to an <b>elegant mathematical framework</b>.</li>
       <li>Most of all, <mark>presenting my work</mark>: at conferences in <a data-gojourney="4">Italy, South Korea</a> and the <a data-gojourney="5">USA</a>, and being recognised with awards.</li>
       <li><a data-open="publications">10+ peer-reviewed papers</a>, including a <a data-gopub="cat">first-author PNAS article</a>.</li>
     </ul></div><div class="nb-margin">academically, a success ✓</div></div>
 
-    <div class="nb-sec"><div><h4>The realisation</h4>
+    <div class="nb-sec"><div><h4><span>2.</span>The realisation</h4>
       <div class="nb-lines">Academic research runs on <b>long feedback cycles</b>, and its real-world impact is often indirect and hard to trace.</div>
       <div class="nb-eq"><span class="k">academia:</span><span>idea → paper → impact</span><span class="v">≈ years</span><span class="k">what I wanted:</span><span>model → decision → outcome</span><span class="v">see it</span></div>
       <div class="nb-quote" style="margin-top:10px">"I wanted a career where I can see the <mark>immediate impact</mark> of my work."</div>
     </div><div class="nb-margin">a better decision, a clearer answer, an understood health risk</div></div>
 
-    <div class="nb-sec"><div><h4>Why data science?</h4>
+    <div class="nb-sec"><div><h4><span>3.</span>Why data science?</h4>
       <div class="nb-lines">My PhD was <b>stochastic modelling of statistical processes</b>, so I was always deep in data: analysing it, interpreting it, finding insights.</div>
       <div class="nb-cols" style="margin-top:8px">
         <div><span class="hand">already had ✓</span><div class="nb-lines"><li>mathematical rigour</li><li>statistical intuition</li><li>breaking complex problems into solvable parts</li></div></div>
@@ -591,12 +610,12 @@ function notebookHTML() {
       </div>
     </div><div class="nb-margin">not from scratch, a <b style="font-weight:700">bridge</b> →</div></div>
 
-    <div class="nb-sec"><div><h4>How I made the transition</h4>
+    <div class="nb-sec"><div><h4><span>4.</span>How I made the transition</h4>
       <div class="nb-lines">A deliberate learning agenda, and <mark>projects that solve real problems</mark> rather than hypothetical ones:</div>
       <div class="nb-stickies">${NB_PROJECTS.map(p => `<div class="nb-sticky" data-goproj="${p[0]}" style="--r:${p[3]}"><b>${p[1]}</b><span>${p[2]}</span><i>open project →</i></div>`).join('')}</div>
     </div><div class="nb-margin">each one: domain knowledge → a data product that helps someone</div></div>
 
-    <div class="nb-sec"><div><h4>Where I am now</h4><ul class="nb-lines">
+    <div class="nb-sec"><div><h4><span>5.</span>Where I am now</h4><ul class="nb-lines">
       <li>AI &amp; Computational Scientist at <a href="https://www.aganitha.ai/" target="_blank">Aganitha.ai ↗</a>, right at the intersection I was looking for.</li>
       <li>Truly implementing <mark>AI for science</mark>: turning messy, real-world scientific problems into computational workflows.</li>
       <li>Across <b>chemistry, bioinformatics and health-adjacent data</b>, with clients and interdisciplinary teams, on answers that matter beyond a notebook.</li>
@@ -679,6 +698,7 @@ function renderJourney() {
   document.getElementById('mtl').innerHTML = JOURNEY.map((j,i)=>({j,i})).reverse().map(({j,i})=>`<div class="mrow ${i===S.jm?'on':''}"><i></i>
     <div class="mt" data-jm="${i}"><b>${j.y}</b><span style="color:var(--text3)">${i===S.jm?'▾':'▸'}</span></div>
     <div class="mm" data-jm="${i}">${j.m}${j.essay?' <span class="jnote">✎ my story</span>':''}</div>${recsHTML(j.recs)}${i===S.jm?detailHTML(j):''}</div>`).join('');
+  spyNotebook();
 }
 
 /* ---------- desktop open / home / resize ---------- */
@@ -742,6 +762,21 @@ document.addEventListener('click', e => {
   if (d.jm) { S.jm = S.jm === +d.jm ? -1 : +d.jm; renderJourney(); return; }
   if ('essay' in d) { S.essay = !S.essay; renderJourney(); if (!S.essay) document.querySelector((isMob ? '#mob' : '#desk') + ' .nb-teaser')?.scrollIntoView({ block: 'center' }); return; }
 });
+
+/* ---------- notebook nav: highlight the section being read ---------- */
+function spyNotebook() {
+  if (!S.essay) return;
+  const nb = document.querySelector((isNarrow() ? '#mob' : '#desk') + ' .nb-full');
+  if (!nb) return;
+  const bar = nb.querySelector('.nb-bar'), secs = nb.querySelectorAll('.nb-sec'), y = bar.getBoundingClientRect().bottom + 40;
+  let cur = 0;
+  NB_SECTIONS.forEach((_, i) => { if (secs[i].getBoundingClientRect().top <= y) cur = i; });
+  bar.querySelectorAll('[data-nbgo]').forEach((b, i) => b.classList.toggle('on', i === cur));
+  bar.querySelector('.cur').textContent = NB_SECTIONS[cur];
+}
+let spyQueued = false;
+addEventListener('scroll', () => { if (!spyQueued) { spyQueued = true; requestAnimationFrame(() => { spyQueued = false; spyNotebook(); }); } }, { passive: true });
+addEventListener('resize', spyNotebook);
 
 /* ---------- shareable links: #projects/<slug>[/preview] · #publications/<slug> · #journey/<slug> · #story ---------- */
 const JD_DEFAULT = 5;
