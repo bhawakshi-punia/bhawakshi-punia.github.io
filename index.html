@@ -133,14 +133,37 @@
   .connect h2 { font-family: 'Lora', serif; font-weight: 300; font-size: 24px; }
 
   /* projects */
-  .pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 12px; }
+  /* projects: timeline list, newest first */
+  .plist { display: flex; flex-direction: column; gap: 14px; margin-left: 6px; padding: 2px 0 2px 20px; border-left: 1px solid var(--border2); }
+  .pli { position: relative; display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+  .pli::before { content: ''; position: absolute; left: -27px; top: 3px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--border2); background: var(--bg); }
+  .pli.on::before { border-color: var(--accent); background: var(--accent); }
+  .plh { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+  .plh .badge { margin: 0; padding: 1px 8px; font-weight: 600; background: color-mix(in oklch, var(--accent) 16%, transparent); }
+  .pwhen { font-size: 11.5px; font-weight: 600; letter-spacing: .06em; color: var(--text3); }
+  .pli.on .pwhen { color: var(--accent); }
+  .pcard.prowc { flex-direction: row; align-items: stretch; }
+  .pth { flex: none; width: 150px; border-right: 1px solid var(--border); background: #fff; overflow: hidden; }
+  .pth img { width: 100%; height: 100%; min-height: 96px; object-fit: cover; display: block; }
+  .pth .pmotif { height: 100%; min-height: 96px; aspect-ratio: auto; border: none; }
+  .prowc .cb { flex: 1; min-width: 0; padding: 10px 14px; display: flex; flex-direction: column; gap: 3px; }
+  .prowc .pdomain { font-size: 9.5px; }
+  .prowc .ct { font-size: 15px; }
+  .prowc .cs { font-size: 12.5px; line-height: 1.45; color: var(--text2); }
+  .prowc .cm { margin-top: 1px; }
+  .prowc .pgo { flex: none; align-self: center; padding: 0 14px 0 2px; color: var(--text3); font-size: 13px; }
+  .pcard.prowc:hover .pgo { color: var(--accent); }
+  @media (max-width: 880px) {
+    .plist { gap: 12px; padding-left: 16px; } .pli::before { left: -23px; }
+    .pth { width: 84px; } .pth img, .pth .pmotif { min-height: 84px; }
+    .prowc .cb { padding: 8px 10px; } .prowc .ct { font-size: 13.5px; } .prowc .cs { font-size: 12px; } .prowc .pdomain { display: none; } .prowc .pgo { display: none; }
+  }
   .pcard { border: 1px solid var(--border2); border-radius: 4px; overflow: hidden; background: var(--bg2); cursor: pointer; display: flex; flex-direction: column; }
   .pcard:hover { border-color: var(--accent); }
   .pcard > img { width: 100%; aspect-ratio: 1.38; object-fit: contain; display: block; background: #fff; border-bottom: 1px solid var(--border); }
   .pcard .cb { padding: 10px 12px; }
   .pcard .ct { font-size: 13.5px; font-weight: 600; line-height: 1.3; }
   .pcard .cm { font-size: 11px; color: var(--text3); margin-top: 3px; }
-  .pgrid[data-work] { grid-template-columns: repeat(auto-fill, minmax(190px,1fr)); }
   .pseg { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; margin-bottom: 14px; }
   .pseg button { display: flex; flex-direction: column; gap: 2px; text-align: left; padding: 10px 14px; border: 1px solid var(--border2); border-radius: 4px; background: transparent; color: var(--text2); cursor: pointer; }
   .pseg button:hover { border-color: var(--accent); }
@@ -162,7 +185,7 @@
   .pprev > .pmotif { border-bottom: none; border-right: 1px solid var(--border); height: 100%; aspect-ratio: auto; min-height: 190px; }
   .prole { font-size: 12px; color: var(--text3); }
   .prole b { color: var(--text2); font-weight: 600; }
-  .pwide { container: pw / inline-size; grid-column: 1 / -1; border: 1px solid var(--accent); border-radius: 4px; background: var(--bg2); overflow: hidden; }
+  .pwide { container: pw / inline-size; grid-column: 1 / -1; border: 1px solid var(--accent); border-radius: 4px; background: var(--bg2); overflow: clip; }
   .pprev { display: grid; grid-template-columns: minmax(0,0.9fr) minmax(0,1.1fr); align-items: start; }
   .pprev.work { align-items: stretch; }
   .pprev > img { width: 100%; height: auto; display: block; background: #fff; border-right: 1px solid var(--border); }
@@ -180,6 +203,14 @@
   .chip { font-size: 12px; padding: 3px 10px; border: 1px solid var(--border2); border-radius: 12px; color: var(--text2); cursor: pointer; background: transparent; white-space: nowrap; }
   .chip:hover { border-color: var(--accent); color: var(--accent); }
   .readmore { font-size: 13px; color: var(--accent); cursor: pointer; font-weight: 600; background: none; border: none; text-align: left; padding: 0; }
+  .pbar { --pen: var(--accent); --paper: var(--bg); }
+  [data-psec] { scroll-margin-top: 64px; }
+  @media (max-width: 880px) { [data-psec] { scroll-margin-top: 128px; } }
+  @container pw (max-width: 640px) {
+    .nb-bar.pbar button span { display: none; } .nb-bar.pbar button { padding: 4px; } .nb-bar.pbar .x { padding: 4px 9px; } .nb-bar.pbar button b { width: 22px; height: 22px; font-size: 11px; }
+    .nb-bar.pbar { flex-wrap: wrap; border-radius: 16px; } .nb-bar.pbar .cur { display: block; flex-basis: 100%; margin: 1px 0 0 6px; font-size: 11px; }
+  }
+  @container pw (max-width: 300px) { .nb-bar.pbar { gap: 2px; } .nb-bar.pbar button { padding: 2px; } .nb-bar.pbar button b { width: 20px; height: 20px; } }
   .sec-h { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-top: 6px; }
   .steps { border: 1px solid var(--border); border-radius: 4px; }
   .step { display: grid; grid-template-columns: 34px minmax(0,1fr); gap: 8px; padding: 9px 12px; border-top: 1px solid var(--border); }
@@ -346,7 +377,6 @@
   .mconnect { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; padding-top: 14px; margin-top: 8px; border-top: 1px dashed var(--border2); width: 100%; }
   .mh2 { font-family: 'Lora', serif; font-weight: 300; font-size: 25px; }
   .msub { font-size: 12px; color: var(--text3); margin: 2px 0 12px; }
-  .mview .pgrid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; }
   .mview .pcard .ct { font-size: 12.5px; }
   .mview .tgrid { display: flex; }
   .mview .figs { columns: 1; }
@@ -360,7 +390,8 @@
   .mrow .recs { flex-direction: row; flex-wrap: wrap; align-items: flex-start; padding-top: 5px; }
   .mrow .jdetail { margin-top: 8px; padding: 12px 10px; min-width: 0; }
   .mrow .jdetail .nbw { margin: 0 -10px; }
-  #mob .nbw, #mob .pwide, #mob .popen { scroll-margin-top: 66px; }
+  #mob .nbw, #mob .pli, #mob .popen { scroll-margin-top: 66px; }
+  .pli { scroll-margin-top: 12px; }
   .mrow .ladder { flex-direction: column; align-items: stretch; }
   .mrow .ladder div { min-height: 0 !important; }
   .tabs { position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; display: flex; justify-content: space-around; padding: 8px 0 max(10px, env(safe-area-inset-bottom)); background: var(--bg); border-top: 1px solid var(--border); }
@@ -446,8 +477,8 @@
         <h2>Projects</h2>
         <div class="sub">Two sets · switch between industry work and personal builds</div>
         <div class="pseg" data-pseg role="tablist"></div>
-        <div data-pg="work"><div class="pgrid" data-work="d"></div><p class="pnote">Client work at <a href="https://www.aganitha.ai/" target="_blank">Aganitha.ai</a>, described at a high level. Client names, data and proprietary details are withheld.</p></div>
-        <div data-pg="personal"><div class="pgrid" data-projects="d"></div></div>
+        <div data-pg="work"><div class="plist" data-work="d"></div><p class="pnote">Client work at <a href="https://www.aganitha.ai/" target="_blank">Aganitha.ai</a>, described at a high level. Client names, data and proprietary details are withheld.</p></div>
+        <div data-pg="personal"><div class="plist" data-projects="d"></div></div>
       </div>
       <div class="panel" data-panel="publications">
         <h2>Publications</h2>
@@ -509,8 +540,8 @@
       <div class="mh2">Projects</div>
       <div class="msub">Two sets · tap to switch</div>
       <div class="pseg" data-pseg role="tablist"></div>
-      <div data-pg="work"><div class="pgrid" data-work="m"></div><p class="pnote">Client work at <a href="https://www.aganitha.ai/" target="_blank">Aganitha.ai</a>, described at a high level. Client names, data and proprietary details are withheld.</p></div>
-      <div data-pg="personal"><div class="pgrid" data-projects="m"></div></div>
+      <div data-pg="work"><div class="plist" data-work="m"></div><p class="pnote">Client work at <a href="https://www.aganitha.ai/" target="_blank">Aganitha.ai</a>, described at a high level. Client names, data and proprietary details are withheld.</p></div>
+      <div data-pg="personal"><div class="plist" data-projects="m"></div></div>
     </div>
     <div class="mview" data-mview="publications">
       <div class="mh2">Publications</div>
@@ -550,7 +581,7 @@ document.querySelector('[data-bio="m"]').innerHTML = BIO(k => `data-mtab="${k}"`
 
 /* ---------- data (from index.html + project pages) ---------- */
 const PROJECTS = [
-  { key:'dop', slug:'pec50-dopamine', img:'assets/images/projects/binding_affinity.png', domain:'Drug Discovery · Deep Learning · Cheminformatics', title:'Predicting pEC50 for Dopamine Receptor Ligands', meta:'RDKit · ChEMBL · TensorFlow · Scikit-learn',
+  { key:'dop', slug:'pec50-dopamine', when:'Nov 2024', ord:'2024-11', blurb:'Cheminformatics and deep learning to predict drug potency for dopamine receptor ligands. Validation MAE of 0.60.', img:'assets/images/projects/binding_affinity.png', domain:'Drug Discovery · Deep Learning · Cheminformatics', title:'Predicting pEC50 for Dopamine Receptor Ligands', meta:'RDKit · ChEMBL · TensorFlow · Scikit-learn',
     lead:'Built predictive models using molecular fingerprints and artificial neural networks to estimate drug potency for dopamine receptor ligands. Curated datasets from ChEMBL, engineered molecular features with RDKit and trained ANN models.',
     tags:['RDKit','TensorFlow','ChEMBL','Scikit-learn','Feature Engineering','Deep Learning'],
     intro:'Dopamine receptors are critical therapeutic targets for neurological and psychiatric conditions — from Parkinson\'s to schizophrenia. This project forecasts pEC50 values (the logarithmic concentration needed for half-maximal ligand effect), bridging PhD-level chemistry with production ML pipelines.',
@@ -560,7 +591,7 @@ const PROJECTS = [
     figs:[['assets/images/dopamine-receptor/MW_vs_LogP.png','Molecular weight vs LogP across all ligands'],['assets/images/dopamine-receptor/pEC50_vs_target_name.png','pEC50 distribution across receptor subtypes (D1–D5)'],['assets/images/dopamine-receptor/train_val_scores.png','GS-tuned GB vs ANN models — MAE, RMSE, R²',1],['assets/images/dopamine-receptor/feature_importance.png','Feature importance — LogP, MW, TPSA, rotatable bonds']],
     outro:'Gradient Boosting stayed strongest despite overfitting; the ANN reduced overfitting but not error — dataset size is the limiting factor. Next step: Graph Neural Networks that encode molecular topology directly.',
     links:[['GitHub repo ↗','https://github.com/bhawakshi-punia/ML_pEC50_dopamine_receptor/tree/main']] },
-  { key:'swt', slug:'sweet-truth', img:'assets/images/projects/sweet_truth.png', domain:'Computer Vision · NLP · Health', title:'The Sweet Truth Detector: Hidden Sweeteners in Packaged Foods', meta:'OpenCV · SpaCy · Scikit-learn · OCR',
+  { key:'swt', slug:'sweet-truth', when:'Dec 2024', ord:'2024-12', blurb:'OCR and NLP pipeline that finds hidden sweeteners on food labels, from typed text or a photo. 97% test accuracy.', img:'assets/images/projects/sweet_truth.png', domain:'Computer Vision · NLP · Health', title:'The Sweet Truth Detector: Hidden Sweeteners in Packaged Foods', meta:'OpenCV · SpaCy · Scikit-learn · OCR',
     lead:'Developed an OCR and NLP pipeline to automatically detect hidden sweeteners in packaged food labels, making nutritional transparency accessible and automatable at scale.',
     tags:['OpenCV','SpaCy','Scikit-learn','Seaborn','OCR','Image Annotation'],
     intro:'From invert syrup to maltitol, sweeteners often disguise themselves under unfamiliar names. This pipeline detects sweeteners in ingredient lists — from typed text or a photo of the packaging — and visually highlights them.',
@@ -570,7 +601,7 @@ const PROJECTS = [
     figs:[['assets/images/sweet-truth/bournvita.png','Bournvita — sweeteners highlighted'],['assets/images/sweet-truth/toothpaste_annotated.jpg','Toothpaste — sweetener detection'],['assets/images/sweet-truth/herb_mix.png','Herb mix — sweeteners identified'],['assets/images/sweet-truth/hold_out_confusion_matrix.png','Hold-out set confusion matrix']],
     outro:'Next: refine OCR over-annotation (e.g. "Sodium" vs "Trisodium"), deploy as a web app, and expand the sweetener alias database.',
     links:[['GitHub repo ↗','https://github.com/bhawakshi-punia/sweet_truth']] },
-  { key:'yoga', slug:'yoga-youtube', img:'assets/images/projects/yoga_img.png', domain:'NLP · Trend Analysis · Wellness', title:'Decoding Yoga Video Trends on YouTube', meta:'Python · NLTK · Pandas · Tableau',
+  { key:'yoga', slug:'yoga-youtube', when:'Jan 2025', ord:'2025-01', blurb:'NLP and engagement analysis of yoga videos on YouTube, delivered as an interactive Tableau dashboard.', img:'assets/images/projects/yoga_img.png', domain:'NLP · Trend Analysis · Wellness', title:'Decoding Yoga Video Trends on YouTube', meta:'Python · NLTK · Pandas · Tableau',
     lead:'End-to-end analysis of yoga channel engagement using NLP and audience behaviour data — content trends, sentiment and performance drivers, delivered as interactive Tableau dashboards.',
     tags:['Python','NLTK','Pandas','Tableau','NLP','Data Visualisation'],
     intro:'My journey into wellness began with a 21-day yoga camp during my PhD. Using a Kaggle dataset of yoga YouTube video metadata, I analysed release dates, duration, views, likes and comments through time-series trends, duration–performance correlations and NLP title-keyword analysis.',
@@ -581,7 +612,7 @@ const PROJECTS = [
     tableau:'https://public.tableau.com/views/yoga_youtube/Story1?:showVizHome=no&:embed=y&:tabs=no&:toolbar=yes&:animate_transition=yes&:display_count=yes&:language=en-US',
     outro:'',
     links:[['GitHub repo ↗','https://github.com/bhawakshi-punia/Data_Analysis_Files/tree/main/yoga_yotube_channel']] },
-  { key:'slp', slug:'sleep-disorder', img:'assets/images/projects/sleep_disorder.png', domain:'Healthcare · ML Classification · EDA', title:'Detecting Sleep Disorders with Machine Learning', meta:'Pandas · Scikit-learn · NumPy · Seaborn',
+  { key:'slp', slug:'sleep-disorder', when:'Sep 2024', ord:'2024-09', blurb:'Supervised ML on lifestyle and biometric data to classify sleep disorders. 93.3% accuracy.', img:'assets/images/projects/sleep_disorder.png', domain:'Healthcare · ML Classification · EDA', title:'Detecting Sleep Disorders with Machine Learning', meta:'Pandas · Scikit-learn · NumPy · Seaborn',
     lead:'Lifestyle and biometric feature analysis using supervised machine learning to classify sleep disorders — a full pipeline from EDA through feature engineering to model evaluation.',
     tags:['Pandas','Scikit-learn','NumPy','Seaborn','Feature Engineering','EDA'],
     intro:'Can lifestyle data predict sleep disorders? A Kaggle sleep-health dataset (~364 adults) with three classes — none, insomnia, sleep apnea — and features including occupation, BMI, stress, heart rate, steps, sleep duration and blood pressure.',
@@ -681,24 +712,26 @@ function notebookHTML() {
 
 /* ---------- industry work (Aganitha) ----------
    Public-safe summaries only: no client names, data, or internal product names.
-   Optional per project: stats:[['value','label'], …] renders a results row; badge:'…' renders a tag. */
+   Optional per project: stats:[['value','label'], …] renders a results row; badges:['…'] show on the timeline line; phases:[['P1','title','text'], …] lists project phases.
+   Both project lists sort newest first by `ord` ('YYYY-MM'; '9999-12' = ongoing); `when` is the label shown. */
 const WORK = [
-  { key:'cmc', slug:'cmc-surfactant-mixtures', motif:'micelle', domain:'Formulation Science · Mixture Property Prediction', title:'Predicting Critical Micelle Concentration of Surfactant Mixtures', meta:'PyTorch · ClearML · Docker',
-    role:'Lead, end-to-end ML development', when:'2025 – present', badge:'Manuscript in preparation',
+  { key:'cmc', slug:'cmc-surfactant-mixtures', ord:'2026-12', blurb:'Leading end-to-end ML development for a mixture property central to homecare formulations, from data curation to a prediction interface for scientists.', motif:'micelle', domain:'Formulation Science · Mixture Property Prediction', title:'Predicting Critical Micelle Concentration of Surfactant Mixtures', meta:'PyTorch · ClearML · Docker',
+    role:'Lead, end-to-end ML development', when:'2025 – 2026', badges:['Manuscript in preparation'],
     lead:'Led end-to-end ML development to predict the critical micelle concentration (CMC) of surfactant mixtures used in homecare products. Curated and cleaned experimental data, evaluated molecular and mixture-level featurisation schemes, benchmarked candidate model families, and delivered a user-friendly prediction interface for scientists.',
     tags:['Regression','Mixture featurisation','Data curation','Model benchmarking','PyTorch','ClearML','Docker'] },
-  { key:'nit', slug:'nitrosation-impurity', motif:'molecule', domain:'Pharmaceutical Chemistry · Impurity Risk', title:'Classifying Nitrosation Impurity Risk in Drug Substances', meta:'GNNs · Foundation models · PyTorch',
+  { key:'nit', slug:'nitrosation-impurity', ord:'2026-02', blurb:'Classification models that flag nitrosation impurity formation in active pharmaceutical ingredients.', motif:'molecule', domain:'Pharmaceutical Chemistry · Impurity Risk', title:'Classifying Nitrosation Impurity Risk in Drug Substances', meta:'GNNs · Foundation models · PyTorch',
     role:'Model developer', when:'2025 – 2026',
     lead:'Developed classification models for nitrosation impurity formation in active pharmaceutical ingredients (APIs). Built end-to-end AI/ML pipelines using graph neural networks and fine-tuned foundation models.',
     tags:['Classification','Graph neural networks','Foundation model fine-tuning','Molecular featurisation','PyTorch','MXNet'] },
-  { key:'visc', slug:'ionic-liquid-viscosity', motif:'flow', domain:'Formulation Science · Physicochemical Properties', title:'Predicting Ionic-Liquid Viscosity for Injectable Formulations', meta:'PyTorch · MXNet',
+  { key:'visc', slug:'ionic-liquid-viscosity', ord:'2026-01', blurb:'Predictive models for ionic-liquid viscosity, relevant to subcutaneous injection formulations.', motif:'flow', domain:'Formulation Science · Physicochemical Properties', title:'Predicting Ionic-Liquid Viscosity for Injectable Formulations', meta:'PyTorch · MXNet',
     role:'Model developer', when:'2025 – 2026',
     lead:'Developed predictive models for the viscosity of ionic liquids relevant to subcutaneous injection formulations, a physicochemical property that shapes how a formulation can be delivered.',
     tags:['Property prediction','Molecular featurisation','PyTorch','MXNet'] },
-  { key:'enz', slug:'enzyme-engineering', motif:'protein', domain:'Computational Biology · Protein Engineering', title:'Protein Language Models for Enzyme Engineering', meta:'Protein language models · ClearML',
-    role:'Contributor, cross-disciplinary team', when:'2025', badge:'Manuscript in preparation',
-    lead:'Contributed ML/DL components to a cross-disciplinary enzyme engineering effort. Built a yield-prediction pipeline with protein language models to support accelerated directed evolution, and introduced ClearML experiment tracking for systematic iteration and comparison across model runs.',
-    tags:['Protein language models','Deep learning','Yield prediction','Directed evolution','ClearML','PyTorch'] }
+  { key:'enz', slug:'enzyme-engineering', ord:'9999-11', blurb:'Protein language models that predict enzyme performance to guide directed evolution: yield in phase 1, now conversion for a second enzyme in phase 2.', motif:'protein', domain:'Computational Biology · Protein Engineering', title:'Protein Language Models for Enzyme Engineering', meta:'Protein language models · ClearML',
+    role:'Contributor, cross-disciplinary team', when:'2025 · Sep 2026 – present', badges:['Phase 2 ongoing','Manuscript in preparation'],
+    lead:'ML/DL components for a cross-disciplinary enzyme engineering effort, using protein language models to predict how enzyme variants will perform and so focus directed evolution on the most promising candidates.',
+    phases:[['P2','Phase 2 · Sep 2026 – present','Extending the approach to a different enzyme, with conversion as the prediction target.'],['P1','Phase 1 · 2025','Built a yield-prediction pipeline supporting accelerated directed evolution, and introduced ClearML experiment tracking for systematic iteration and comparison across model runs. Manuscript in preparation.']],
+    tags:['Protein language models','Deep learning','Yield prediction','Conversion prediction','Directed evolution','ClearML','PyTorch'] }
 ];
 const MOTIFS = (() => {
   const svg = b => `<svg viewBox="0 0 276 200" aria-hidden="true">${b}</svg>`;
@@ -724,18 +757,21 @@ const MOTIFS = (() => {
     <text x="40" y="152" class="dim" style="letter-spacing:.3em;font-size:11px;text-anchor:start">M K T L V A</text>`;
   return { micelle: svg(mic), molecule: svg(mol), flow: svg(flow), protein: svg(helix) };
 })();
+const byDate = a => [...a].sort((x, y) => y.ord.localeCompare(x.ord));
+const pli = (p, on, inner) => `<div class="pli ${on ? 'on' : ''}"><div class="plh"><span class="pwhen">${p.when}</span>${(p.badges || []).map(b => `<span class="badge">${b}</span>`).join('')}</div>${inner}</div>`;
 function workHTML(which) {
   const st = S.proj[which];
-  return WORK.map(p => {
-    if (st.key !== p.key) return `<div class="pcard" data-pk="${p.key}" data-pw="${which}"><div class="pmotif">${MOTIFS[p.motif]}</div><div class="cb"><div class="ct">${p.title}</div><div class="cm">${p.meta}</div></div></div>`;
+  return byDate(WORK).map(p => pli(p, st.key === p.key, (() => {
+    if (st.key !== p.key) return `<div class="pcard prowc" data-pk="${p.key}" data-pw="${which}"><div class="pth"><div class="pmotif">${MOTIFS[p.motif]}</div></div><div class="cb"><span class="pdomain">${p.domain}</span><div class="ct">${p.title}</div><div class="cs">${p.blurb}</div><div class="cm">${p.role} · ${p.meta}</div></div><span class="pgo">▾</span></div>`;
     return `<div class="pwide"><div class="pprev work"><div class="pmotif">${MOTIFS[p.motif]}</div><div class="pb">
       <div class="prow"><span class="pdomain">${p.domain}</span><button class="chip" data-pclose="${which}">▴ collapse</button></div>
       <div class="ptitle">${p.title}</div>
-      <div class="prole"><b>${p.role}</b> · Aganitha.ai · ${p.when}${p.badge ? ` <span class="badge">${p.badge}</span>` : ''}</div>
+      <div class="prole"><b>${p.role}</b> · Aganitha.ai · ${p.when}</div>
       <div class="plead">${p.lead}</div>
+      ${p.phases ? `<div class="steps">${p.phases.map(x => `<div class="step"><b class="n">${x[0]}</b><div><div class="st">${x[1]}</div><div class="sd">${x[2]}</div></div></div>`).join('')}</div>` : ''}
       ${p.stats ? `<div class="stats">${p.stats.map(x => `<div class="stat"><div class="v">${x[0]}</div><div class="k">${x[1]}</div></div>`).join('')}</div>` : ''}
       <div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div></div></div></div>`;
-  }).join('');
+  })())).join('');
 }
 
 /* ---------- state ---------- */
@@ -744,8 +780,8 @@ const S = { pgroup:'work', panel:null, proj:{ d:{key:null,full:false}, m:{key:nu
 /* ---------- projects (8d: card → preview → full case study, same panel) ---------- */
 function projHTML(which) {
   const st = S.proj[which];
-  return PROJECTS.map(p => {
-    if (st.key !== p.key) return `<div class="pcard" data-pk="${p.key}" data-pw="${which}"><img src="${p.img}" alt="" loading="lazy"><div class="cb"><div class="ct">${p.title}</div><div class="cm">${p.meta}</div></div></div>`;
+  return byDate(PROJECTS).map(p => pli(p, st.key === p.key, (() => {
+    if (st.key !== p.key) return `<div class="pcard prowc" data-pk="${p.key}" data-pw="${which}"><div class="pth"><img src="${p.img}" alt="" loading="lazy"></div><div class="cb"><span class="pdomain">${p.domain}</span><div class="ct">${p.title}</div><div class="cs">${p.blurb}</div><div class="cm">${p.meta}</div></div><span class="pgo">▾</span></div>`;
     if (!st.full) return `<div class="pwide"><div class="pprev"><img src="${p.img}" alt="${p.title}"><div class="pb">
       <div class="prow"><span class="pdomain">${p.domain}</span><button class="chip" data-pclose="${which}">▴ collapse</button></div>
       <div class="ptitle">${p.title}</div><div class="plead">${p.lead}</div>
@@ -755,32 +791,34 @@ function projHTML(which) {
     const res = p.table ? `<table class="res"><tr>${p.table.head.map(h=>`<th>${h}</th>`).join('')}</tr>${p.table.rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</table>`
                         : `<div class="stats">${p.stats.map(s=>`<div class="stat"><div class="v">${s[0]}</div><div class="k">${s[1]}</div></div>`).join('')}</div>`;
     const fig = f => `<figure><img src="${f[0]}" alt="${f[1]}" loading="lazy"><figcaption>${f[1]}</figcaption></figure>`;
-    const figs = p.figs.length ? `<div class="sec-h">Visuals</div><div class="figs">${p.figs.filter(f=>!f[2]).map(fig).join('')}</div>${p.figs.some(f=>f[2]) ? `<div class="figs wide">${p.figs.filter(f=>f[2]).map(fig).join('')}</div>` : ''}` : '';
+    const figs = p.figs.length ? `<div class="sec-h" data-psec>Visuals</div><div class="figs">${p.figs.filter(f=>!f[2]).map(fig).join('')}</div>${p.figs.some(f=>f[2]) ? `<div class="figs wide">${p.figs.filter(f=>f[2]).map(fig).join('')}</div>` : ''}` : '';
+    const secs = ['Overview', 'Methodology', 'Results', ...(p.figs.length ? ['Visuals'] : []), ...(p.tableau ? ['Dashboard'] : [])];
     return `<div class="pwide"><div class="pb">
-      <div class="prow"><button class="chip" data-pprev="${which}">← back to preview</button><button class="chip" data-pclose="${which}">✕ close</button></div>
-      <span class="pdomain">${p.domain}</span><div class="ptitle">${p.title}</div><div class="cm" style="font-size:12px;color:var(--text3)">${p.meta}</div>
+      <div class="nb-bar pbar"><button class="x" data-pclose="${which}" aria-label="Close the case study">✕<i>close</i></button><span class="sep"></span>${secs.map((l,i)=>`<button data-psgo="${i}" title="${l}"><b>${i+1}</b><span>${l}</span></button>`).join('')}<span class="cur"></span></div>
+      <span class="pdomain" data-psec>${p.domain}</span><div class="ptitle">${p.title}</div><div class="cm" style="font-size:12px;color:var(--text3)">${p.meta}</div>
       <img class="phero" src="${p.img}" alt="${p.title}">
       <div class="plead">${p.intro}</div>
-      <div class="sec-h">Methodology</div>${steps}
-      <div class="sec-h">Results</div>${res}
+      <div class="sec-h" data-psec>Methodology</div>${steps}
+      <div class="sec-h" data-psec>Results</div>${res}
       <div class="note">${p.note}</div>
       ${figs}
-      ${p.tableau ? `<div class="sec-h">Interactive dashboard</div><div class="tabwrap" data-tabfit><iframe src="${p.tableau}" title="Yoga YouTube trends — Tableau dashboard" loading="lazy"></iframe></div>` : ''}
+      ${p.tableau ? `<div class="sec-h" data-psec>Interactive dashboard</div><div class="tabwrap" data-tabfit><iframe src="${p.tableau}" title="Yoga YouTube trends — Tableau dashboard" loading="lazy"></iframe></div>` : ''}
       ${p.outro ? `<div class="plead">${p.outro}</div>` : ''}
       <div class="plinks">${p.links.map(l=>`<a class="btn-ghost" href="${l[1]}" target="_blank">${l[0]}</a>`).join('')}</div>
     </div></div>`;
-  }).join('');
+  })())).join('');
 }
 const TAB_W = 1016, TAB_H = 1027;
 const tabRO = new ResizeObserver(entries => entries.forEach(en => fitTableau(en.target)));
 function fitTableau(w) { const s = w.clientWidth / TAB_W; const fr = w.querySelector('iframe'); if (!fr || !s) return; fr.style.transform = 'scale(' + s + ')'; w.style.height = Math.round(TAB_H * s) + 'px'; }
 function renderProjects() {
-  const segs = [['work', 'At Aganitha', `${WORK.length} client projects · industry`], ['personal', 'Personal projects', `${PROJECTS.length} independent builds · case studies`]];
+  const segs = [['work', 'At Aganitha', `${WORK.length} client projects · newest first`], ['personal', 'Personal projects', `${PROJECTS.length} independent builds · newest first`]];
   document.querySelectorAll('[data-pseg]').forEach(el => el.innerHTML = segs.map(g => `<button role="tab" data-pgroup="${g[0]}" class="${S.pgroup === g[0] ? 'on' : ''}" aria-selected="${S.pgroup === g[0]}"><b>${g[1]}</b><span>${g[2]}</span></button>`).join(''));
   document.querySelectorAll('[data-pg]').forEach(el => el.hidden = el.dataset.pg !== S.pgroup);
   document.querySelectorAll('.nav-sub').forEach(el => el.classList.toggle('on', el.dataset.pgroup === S.pgroup));
   document.querySelectorAll('[data-work]').forEach(el => el.innerHTML = workHTML(el.dataset.work));
   document.querySelectorAll('[data-projects]').forEach(el => el.innerHTML = projHTML(el.dataset.projects));
+  spyProject();
   tabRO.disconnect();
   document.querySelectorAll('[data-tabfit]').forEach(w => { fitTableau(w); tabRO.observe(w); });
 }
@@ -855,11 +893,12 @@ function mTab(name) {
 
 /* ---------- one delegated click handler ---------- */
 document.addEventListener('click', e => {
-  const t = e.target.closest('[data-pgroup],[data-about],[data-nbgo],[data-goproj],[data-gopub],[data-gojourney],[data-open],[data-home],[data-mtab],[data-pk],[data-pfull],[data-pprev],[data-pclose],[data-tk],[data-tclose],[data-jd],[data-jm],[data-essay],[data-stop],#atomSlot');
+  const t = e.target.closest('[data-psgo],[data-pgroup],[data-about],[data-nbgo],[data-goproj],[data-gopub],[data-gojourney],[data-open],[data-home],[data-mtab],[data-pk],[data-pfull],[data-pprev],[data-pclose],[data-tk],[data-tclose],[data-jd],[data-jm],[data-essay],[data-stop],#atomSlot');
   if (!t) return;
   const d = t.dataset;
   if ('stop' in d) return;
   const isMob = !!t.closest('#mob');
+  if (d.psgo) { t.closest('.pwide').querySelectorAll('[data-psec]')[+d.psgo].scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
   if (d.pgroup) { S.pgroup = d.pgroup; S.proj = { d:{key:null,full:false}, m:{key:null,full:false} }; renderProjects(); return; }
   if ('about' in d) { (isMob ? document.getElementById('mob') : desk).classList.toggle('about-on'); return; }
   if (d.nbgo) { t.closest('.nb').querySelectorAll('.nb-sec')[+d.nbgo].scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
@@ -873,7 +912,7 @@ document.addEventListener('click', e => {
   if (d.pk) { S.proj[d.pw] = { key: d.pk, full: false }; renderProjects(); return; }
   if (d.pfull) { S.proj[d.pfull].full = true; renderProjects(); return; }
   if (d.pprev) { S.proj[d.pprev].full = false; renderProjects(); return; }
-  if (d.pclose) { S.proj[d.pclose] = { key: null, full: false }; renderProjects(); return; }
+  if (d.pclose) { const k = S.proj[d.pclose].key; S.proj[d.pclose] = { key: null, full: false }; renderProjects(); document.querySelector(`${isMob ? '#mob' : '#desk'} [data-pk="${k}"]`)?.scrollIntoView({ block: 'center' }); return; }
   if (d.tk) { S.theme = S.theme === d.tk ? null : d.tk; renderPubs(); return; }
   if ('tclose' in d) { S.theme = null; renderPubs(); return; }
   if (d.jd) { S.jd = +d.jd; renderJourney(); return; }
@@ -892,9 +931,18 @@ function spyNotebook() {
   bar.querySelectorAll('[data-nbgo]').forEach((b, i) => b.classList.toggle('on', i === cur));
   bar.querySelector('.cur').textContent = NB_SECTIONS[cur];
 }
+function spyProject() {
+  const bar = document.querySelector((isNarrow() ? '#mob' : '#desk') + ' .pbar');
+  if (!bar) return;
+  const secs = bar.closest('.pwide').querySelectorAll('[data-psec]'), btns = bar.querySelectorAll('[data-psgo]'), y = bar.getBoundingClientRect().bottom + 40;
+  let cur = 0;
+  secs.forEach((el, i) => { if (el.getBoundingClientRect().top <= y) cur = i; });
+  btns.forEach((b, i) => b.classList.toggle('on', i === cur));
+  bar.querySelector('.cur').textContent = btns[cur].title;
+}
 let spyQueued = false;
-addEventListener('scroll', () => { if (!spyQueued) { spyQueued = true; requestAnimationFrame(() => { spyQueued = false; spyNotebook(); }); } }, { passive: true });
-addEventListener('resize', spyNotebook);
+addEventListener('scroll', () => { if (!spyQueued) { spyQueued = true; requestAnimationFrame(() => { spyQueued = false; spyNotebook(); spyProject(); }); } }, { passive: true });
+addEventListener('resize', () => { spyNotebook(); spyProject(); });
 
 /* ---------- shareable links: #projects/<slug>[/preview] · #publications/<slug> · #journey/<slug> · #story ---------- */
 const JD_DEFAULT = 5;
@@ -930,7 +978,7 @@ function applyHash(focus) {
   renderProjects(); renderPubs(); renderJourney();
   if (name) { openPanel(name); mTab(name); } else { goHome(); mTab('home'); }
   if (!focus) return;
-  const target = { projects: '.pwide', publications: '.popen', journey: S.essay ? '.nbw' : null }[name];
+  const target = { projects: '.pli.on', publications: '.popen', journey: S.essay ? '.nbw' : null }[name];
   const el = target && document.querySelector((isNarrow() ? '#mob ' : '#desk ') + target);
   if (el) requestAnimationFrame(() => el.scrollIntoView({ block: 'start' }));
 }
