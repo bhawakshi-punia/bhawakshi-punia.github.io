@@ -140,10 +140,33 @@
   .pcard .cb { padding: 10px 12px; }
   .pcard .ct { font-size: 13.5px; font-weight: 600; line-height: 1.3; }
   .pcard .cm { font-size: 11px; color: var(--text3); margin-top: 3px; }
+  .pgrid[data-work] { grid-template-columns: repeat(auto-fill, minmax(190px,1fr)); }
+  .pseg { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; margin-bottom: 14px; }
+  .pseg button { display: flex; flex-direction: column; gap: 2px; text-align: left; padding: 10px 14px; border: 1px solid var(--border2); border-radius: 4px; background: transparent; color: var(--text2); cursor: pointer; }
+  .pseg button:hover { border-color: var(--accent); }
+  .pseg button b { font-family: 'Lora', serif; font-weight: 400; font-size: 18px; line-height: 1.2; color: var(--text); }
+  .pseg button span { font-size: 11.5px; color: var(--text3); }
+  .pseg button.on { border-color: var(--accent); background: color-mix(in oklch, var(--accent) 14%, transparent); box-shadow: inset 0 -3px 0 var(--accent); }
+  .pseg button.on b { color: var(--accent); }
+  .pnote { font-size: 11px; color: var(--text3); margin: 8px 0 0; }
+  .nav-subs { display: none; flex-direction: column; gap: 1px; margin: 0 0 4px 23px; padding-left: 14px; border-left: 1px solid var(--border2); }
+  .nav-item.active + .nav-subs { display: flex; }
+  .nav-sub { font-size: 12.5px; color: var(--text3); padding: 3px 8px; border-radius: 3px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .nav-sub:hover { color: var(--accent); }
+  .nav-sub.on { color: var(--accent); font-weight: 600; }
+  @media (max-width: 880px) { .pseg button { padding: 8px 10px; } .pseg button b { font-size: 15.5px; } .pseg button span { font-size: 10.5px; } }
+  .pmotif { aspect-ratio: 1.38; display: grid; place-items: center; color: var(--accent); background: radial-gradient(closest-side, var(--glow), transparent), var(--bg3); border-bottom: 1px solid var(--border); }
+  .pmotif svg { width: 100%; height: 100%; display: block; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .pmotif .a2 { stroke: var(--accent2); } .pmotif .f { fill: currentColor; stroke: none; } .pmotif .f2 { fill: var(--accent2); stroke: none; } .pmotif .dim { opacity: .45; }
+  .pmotif text { fill: currentColor; stroke: none; font: 600 13px 'Plus Jakarta Sans', sans-serif; text-anchor: middle; dominant-baseline: central; }
+  .pprev > .pmotif { border-bottom: none; border-right: 1px solid var(--border); height: 100%; aspect-ratio: auto; min-height: 190px; }
+  .prole { font-size: 12px; color: var(--text3); }
+  .prole b { color: var(--text2); font-weight: 600; }
   .pwide { container: pw / inline-size; grid-column: 1 / -1; border: 1px solid var(--accent); border-radius: 4px; background: var(--bg2); overflow: hidden; }
   .pprev { display: grid; grid-template-columns: minmax(0,0.9fr) minmax(0,1.1fr); align-items: start; }
+  .pprev.work { align-items: stretch; }
   .pprev > img { width: 100%; height: auto; display: block; background: #fff; border-right: 1px solid var(--border); }
-  @container pw (max-width: 520px) { .pprev { grid-template-columns: 1fr; } .pprev > img { border-right: none; border-bottom: 1px solid var(--border); } }
+  @container pw (max-width: 520px) { .pprev { grid-template-columns: 1fr; } .pprev > img { border-right: none; border-bottom: 1px solid var(--border); } .pprev > .pmotif { border-right: none; border-bottom: 1px solid var(--border); aspect-ratio: 2.1; min-height: 0; } }
   .phero { display: block; max-width: 100%; max-height: 420px; width: auto; height: auto; align-self: center; border: 1px solid var(--border); border-radius: 4px; background: #fff; }
   .tabwrap { position: relative; width: 100%; overflow: hidden; border: 1px solid var(--border); background: #fff; }
   .tabwrap iframe { position: absolute; left: 0; top: 0; width: 1016px; height: 1027px; border: 0; transform-origin: 0 0; }
@@ -359,6 +382,9 @@
   ║   commit & push. No HTML changes needed.         ║
   ║ Profile photo        : assets/images/profile.jpg ║
   ║                                                  ║
+  ║ Aganitha work: WORK block (public-safe text      ║
+  ║   only; add stats:[['97%','Accuracy']] for a     ║
+  ║   results row once cleared to share).            ║
   ║ To add a new project : add an entry to PROJECTS, ║
   ║   card image to assets/images/projects/, figures ║
   ║   to assets/images/<project>/, commit & push.    ║
@@ -378,7 +404,7 @@
       <div class="atom-slot" id="atomSlot" title="">
         <div class="atom">
           <div class="atom-glow"></div>
-          <div class="el" style="left:50%;top:6%"><div class="float"><button class="ico" data-open="projects" aria-label="Personal projects">Pr</button><span class="lbl">Projects</span></div></div>
+          <div class="el" style="left:50%;top:6%"><div class="float"><button class="ico" data-open="projects" aria-label="Projects">Pr</button><span class="lbl">Projects</span></div></div>
           <div class="el" style="left:84.4%;top:22.5%"><div class="float f2"><button class="ico" data-open="publications" aria-label="Publications">Pb</button><span class="lbl">Publications</span></div></div>
           <div class="el" style="left:92.9%;top:59.8%"><div class="float f3"><button class="ico" data-open="journey" aria-label="Journey">Jn</button><span class="lbl">Journey</span></div></div>
           <div class="el" style="left:69.1%;top:89.6%"><div class="float f2" style="animation-delay:-2s"><a class="ico" href="Bhawakshi_Punia_CV.pdf" target="_blank" aria-label="CV">Cv</a><span class="lbl">CV ↓</span></div></div>
@@ -399,7 +425,8 @@
 
       <nav class="side" aria-label="Sections">
         <span class="back" data-home>← back to the atom</span>
-        <div class="nav-item" data-open="projects"><span class="ico">Pr</span>Personal projects</div>
+        <div class="nav-item" data-open="projects"><span class="ico">Pr</span>Projects</div>
+        <div class="nav-subs"><span class="nav-sub" data-pgroup="work">At Aganitha</span><span class="nav-sub" data-pgroup="personal">Personal</span></div>
         <div class="nav-item" data-open="publications"><span class="ico">Pb</span>Publications</div>
         <div class="nav-item" data-open="journey"><span class="ico">Jn</span>Journey</div>
         <div class="dock">
@@ -416,9 +443,11 @@
 
     <section class="panels">
       <div class="panel" data-panel="projects">
-        <h2>Personal projects</h2>
-        <div class="sub">Four builds · click a card to preview, then read the full case study</div>
-        <div class="pgrid" data-projects="d"></div>
+        <h2>Projects</h2>
+        <div class="sub">Two sets · switch between industry work and personal builds</div>
+        <div class="pseg" data-pseg role="tablist"></div>
+        <div data-pg="work"><div class="pgrid" data-work="d"></div><p class="pnote">Client work at <a href="https://www.aganitha.ai/" target="_blank">Aganitha.ai</a>, described at a high level. Client names, data and proprietary details are withheld.</p></div>
+        <div data-pg="personal"><div class="pgrid" data-projects="d"></div></div>
       </div>
       <div class="panel" data-panel="publications">
         <h2>Publications</h2>
@@ -477,9 +506,11 @@
       </div>
     </div>
     <div class="mview" data-mview="projects">
-      <div class="mh2">Personal projects</div>
-      <div class="msub">Tap a card to preview</div>
-      <div class="pgrid" data-projects="m"></div>
+      <div class="mh2">Projects</div>
+      <div class="msub">Two sets · tap to switch</div>
+      <div class="pseg" data-pseg role="tablist"></div>
+      <div data-pg="work"><div class="pgrid" data-work="m"></div><p class="pnote">Client work at <a href="https://www.aganitha.ai/" target="_blank">Aganitha.ai</a>, described at a high level. Client names, data and proprietary details are withheld.</p></div>
+      <div data-pg="personal"><div class="pgrid" data-projects="m"></div></div>
     </div>
     <div class="mview" data-mview="publications">
       <div class="mh2">Publications</div>
@@ -648,8 +679,67 @@ function notebookHTML() {
   </div></div></div>`;
 }
 
+/* ---------- industry work (Aganitha) ----------
+   Public-safe summaries only: no client names, data, or internal product names.
+   Optional per project: stats:[['value','label'], …] renders a results row; badge:'…' renders a tag. */
+const WORK = [
+  { key:'cmc', slug:'cmc-surfactant-mixtures', motif:'micelle', domain:'Formulation Science · Mixture Property Prediction', title:'Predicting Critical Micelle Concentration of Surfactant Mixtures', meta:'PyTorch · ClearML · Docker',
+    role:'Lead, end-to-end ML development', when:'2025 – present', badge:'Manuscript in preparation',
+    lead:'Led end-to-end ML development to predict the critical micelle concentration (CMC) of surfactant mixtures used in homecare products. Curated and cleaned experimental data, evaluated molecular and mixture-level featurisation schemes, benchmarked candidate model families, and delivered a user-friendly prediction interface for scientists.',
+    tags:['Regression','Mixture featurisation','Data curation','Model benchmarking','PyTorch','ClearML','Docker'] },
+  { key:'nit', slug:'nitrosation-impurity', motif:'molecule', domain:'Pharmaceutical Chemistry · Impurity Risk', title:'Classifying Nitrosation Impurity Risk in Drug Substances', meta:'GNNs · Foundation models · PyTorch',
+    role:'Model developer', when:'2025 – 2026',
+    lead:'Developed classification models for nitrosation impurity formation in active pharmaceutical ingredients (APIs). Built end-to-end AI/ML pipelines using graph neural networks and fine-tuned foundation models.',
+    tags:['Classification','Graph neural networks','Foundation model fine-tuning','Molecular featurisation','PyTorch','MXNet'] },
+  { key:'visc', slug:'ionic-liquid-viscosity', motif:'flow', domain:'Formulation Science · Physicochemical Properties', title:'Predicting Ionic-Liquid Viscosity for Injectable Formulations', meta:'PyTorch · MXNet',
+    role:'Model developer', when:'2025 – 2026',
+    lead:'Developed predictive models for the viscosity of ionic liquids relevant to subcutaneous injection formulations, a physicochemical property that shapes how a formulation can be delivered.',
+    tags:['Property prediction','Molecular featurisation','PyTorch','MXNet'] },
+  { key:'enz', slug:'enzyme-engineering', motif:'protein', domain:'Computational Biology · Protein Engineering', title:'Protein Language Models for Enzyme Engineering', meta:'Protein language models · ClearML',
+    role:'Contributor, cross-disciplinary team', when:'2025', badge:'Manuscript in preparation',
+    lead:'Contributed ML/DL components to a cross-disciplinary enzyme engineering effort. Built a yield-prediction pipeline with protein language models to support accelerated directed evolution, and introduced ClearML experiment tracking for systematic iteration and comparison across model runs.',
+    tags:['Protein language models','Deep learning','Yield prediction','Directed evolution','ClearML','PyTorch'] }
+];
+const MOTIFS = (() => {
+  const svg = b => `<svg viewBox="0 0 276 200" aria-hidden="true">${b}</svg>`;
+  const pt = (cx, cy, r, a) => [(cx + r * Math.cos(a)).toFixed(1), (cy + r * Math.sin(a)).toFixed(1)];
+  // micelle: ring of two surfactant types, tails pointing inward, a few free monomers
+  let mic = '';
+  for (let i = 0; i < 16; i++) { const a = i * Math.PI / 8, h = pt(138, 100, 62, a), t = pt(138, 100, 22, a + .12), two = i % 3 === 0; mic += `<path class="${two ? 'a2' : ''}" d="M${h[0]} ${h[1]} L${t[0]} ${t[1]}"/><circle class="${two ? 'f2' : 'f'}" cx="${h[0]}" cy="${h[1]}" r="6"/>`; }
+  mic += [[34,46,.5],[240,150,2.4],[236,40,3.9],[38,160,5.6]].map(([x,y,a],i) => { const t = pt(x, y, 24, a); return `<g class="dim"><path class="${i % 2 ? 'a2' : ''}" d="M${x} ${y} L${t[0]} ${t[1]}"/><circle class="${i % 2 ? 'f2' : 'f'}" cx="${x}" cy="${y}" r="5"/></g>`; }).join('');
+  // molecule graph with a flagged N–N=O group
+  const hex = [...Array(6)].map((_, i) => pt(92, 104, 40, Math.PI / 6 + i * Math.PI / 3));
+  const mol = `<path d="M${hex.map(p => p.join(' ')).join(' L')} Z"/><circle class="dim" cx="92" cy="104" r="24"/>${hex.map(p => `<circle class="f" cx="${p[0]}" cy="${p[1]}" r="4.5"/>`).join('')}
+    <path d="M${hex[0].join(' ')} L162 124"/><path class="a2" d="M174 118 L196 92 M210 86 L236 86 M210 92 L236 92"/>
+    <text x="167" y="124">N</text><text x="202" y="88" style="fill:var(--accent2)">N</text><text x="246" y="88" style="fill:var(--accent2)">O</text>
+    <ellipse class="a2 dim" cx="212" cy="96" rx="52" ry="34" stroke-dasharray="4 5"/>`;
+  // viscosity: ion pair and flow lines that slow down
+  const wave = (y, amp, cls) => `<path class="${cls}" d="M24 ${y} ${[...Array(6)].map((_, i) => `q19 ${i % 2 ? amp : -amp} 38 0`).join(' ')}"/>`;
+  const flow = wave(62, 14, '') + wave(100, 8, 'a2') + wave(138, 3, 'dim') +
+    `<circle cx="96" cy="168" r="13"/><text x="96" y="168">+</text><circle class="a2" cx="132" cy="168" r="17"/><text x="132" y="168" style="fill:var(--accent2)">−</text>`;
+  // protein: helix ribbon with rising yield bars
+  const helix = `<path stroke-width="5" d="M22 78 ${[...Array(5)].map((_, i) => `q12 ${i % 2 ? 44 : -44} 24 0`).join(' ')}"/><path class="dim" stroke-width="5" d="M34 78 ${[...Array(4)].map((_, i) => `q12 ${i % 2 ? -44 : 44} 24 0`).join(' ')}"/>
+    <path class="dim" d="M168 160 H258"/>${[26, 44, 66, 96].map((h, i) => `<rect class="${i === 3 ? 'f2' : 'f'}" x="${174 + i * 21}" y="${160 - h}" width="13" height="${h}" rx="2"/>`).join('')}
+    <path class="a2" d="M172 128 L252 56 M252 56 l-12 2 M252 56 l-2 12"/>
+    <text x="40" y="152" class="dim" style="letter-spacing:.3em;font-size:11px;text-anchor:start">M K T L V A</text>`;
+  return { micelle: svg(mic), molecule: svg(mol), flow: svg(flow), protein: svg(helix) };
+})();
+function workHTML(which) {
+  const st = S.proj[which];
+  return WORK.map(p => {
+    if (st.key !== p.key) return `<div class="pcard" data-pk="${p.key}" data-pw="${which}"><div class="pmotif">${MOTIFS[p.motif]}</div><div class="cb"><div class="ct">${p.title}</div><div class="cm">${p.meta}</div></div></div>`;
+    return `<div class="pwide"><div class="pprev work"><div class="pmotif">${MOTIFS[p.motif]}</div><div class="pb">
+      <div class="prow"><span class="pdomain">${p.domain}</span><button class="chip" data-pclose="${which}">▴ collapse</button></div>
+      <div class="ptitle">${p.title}</div>
+      <div class="prole"><b>${p.role}</b> · Aganitha.ai · ${p.when}${p.badge ? ` <span class="badge">${p.badge}</span>` : ''}</div>
+      <div class="plead">${p.lead}</div>
+      ${p.stats ? `<div class="stats">${p.stats.map(x => `<div class="stat"><div class="v">${x[0]}</div><div class="k">${x[1]}</div></div>`).join('')}</div>` : ''}
+      <div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div></div></div></div>`;
+  }).join('');
+}
+
 /* ---------- state ---------- */
-const S = { panel:null, proj:{ d:{key:null,full:false}, m:{key:null,full:false} }, theme:null, jd:5, jm:5, essay:false, mtab:'home' };
+const S = { pgroup:'work', panel:null, proj:{ d:{key:null,full:false}, m:{key:null,full:false} }, theme:null, jd:5, jm:5, essay:false, mtab:'home' };
 
 /* ---------- projects (8d: card → preview → full case study, same panel) ---------- */
 function projHTML(which) {
@@ -685,6 +775,11 @@ const TAB_W = 1016, TAB_H = 1027;
 const tabRO = new ResizeObserver(entries => entries.forEach(en => fitTableau(en.target)));
 function fitTableau(w) { const s = w.clientWidth / TAB_W; const fr = w.querySelector('iframe'); if (!fr || !s) return; fr.style.transform = 'scale(' + s + ')'; w.style.height = Math.round(TAB_H * s) + 'px'; }
 function renderProjects() {
+  const segs = [['work', 'At Aganitha', `${WORK.length} client projects · industry`], ['personal', 'Personal projects', `${PROJECTS.length} independent builds · case studies`]];
+  document.querySelectorAll('[data-pseg]').forEach(el => el.innerHTML = segs.map(g => `<button role="tab" data-pgroup="${g[0]}" class="${S.pgroup === g[0] ? 'on' : ''}" aria-selected="${S.pgroup === g[0]}"><b>${g[1]}</b><span>${g[2]}</span></button>`).join(''));
+  document.querySelectorAll('[data-pg]').forEach(el => el.hidden = el.dataset.pg !== S.pgroup);
+  document.querySelectorAll('.nav-sub').forEach(el => el.classList.toggle('on', el.dataset.pgroup === S.pgroup));
+  document.querySelectorAll('[data-work]').forEach(el => el.innerHTML = workHTML(el.dataset.work));
   document.querySelectorAll('[data-projects]').forEach(el => el.innerHTML = projHTML(el.dataset.projects));
   tabRO.disconnect();
   document.querySelectorAll('[data-tabfit]').forEach(w => { fitTableau(w); tabRO.observe(w); });
@@ -760,14 +855,15 @@ function mTab(name) {
 
 /* ---------- one delegated click handler ---------- */
 document.addEventListener('click', e => {
-  const t = e.target.closest('[data-about],[data-nbgo],[data-goproj],[data-gopub],[data-gojourney],[data-open],[data-home],[data-mtab],[data-pk],[data-pfull],[data-pprev],[data-pclose],[data-tk],[data-tclose],[data-jd],[data-jm],[data-essay],[data-stop],#atomSlot');
+  const t = e.target.closest('[data-pgroup],[data-about],[data-nbgo],[data-goproj],[data-gopub],[data-gojourney],[data-open],[data-home],[data-mtab],[data-pk],[data-pfull],[data-pprev],[data-pclose],[data-tk],[data-tclose],[data-jd],[data-jm],[data-essay],[data-stop],#atomSlot');
   if (!t) return;
   const d = t.dataset;
   if ('stop' in d) return;
   const isMob = !!t.closest('#mob');
+  if (d.pgroup) { S.pgroup = d.pgroup; S.proj = { d:{key:null,full:false}, m:{key:null,full:false} }; renderProjects(); return; }
   if ('about' in d) { (isMob ? document.getElementById('mob') : desk).classList.toggle('about-on'); return; }
   if (d.nbgo) { t.closest('.nb').querySelectorAll('.nb-sec')[+d.nbgo].scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
-  if (d.goproj) { const w = isMob ? 'm' : 'd'; S.proj[w] = { key: d.goproj, full: false }; renderProjects(); isMob ? mTab('projects') : openPanel('projects'); return; }
+  if (d.goproj) { const w = isMob ? 'm' : 'd'; S.pgroup = 'personal'; S.proj[w] = { key: d.goproj, full: false }; renderProjects(); isMob ? mTab('projects') : openPanel('projects'); return; }
   if (d.gopub) { S.theme = d.gopub; renderPubs(); isMob ? mTab('publications') : openPanel('publications'); return; }
   if (d.gojourney) { S.jd = +d.gojourney; S.jm = +d.gojourney; renderJourney(); return; }
   if (t.id === 'atomSlot') { if (S.panel) goHome(); return; }
@@ -807,8 +903,9 @@ function stateHash() {
   const narrow = isNarrow();
   const sec = narrow ? (S.mtab === 'home' ? null : S.mtab) : S.panel;
   if (sec === 'projects') {
-    const st = S.proj[narrow ? 'm' : 'd'], p = PROJECTS.find(x => x.key === st.key);
-    return p ? `projects/${p.slug}${st.full ? '' : '/preview'}` : 'projects';
+    const st = S.proj[narrow ? 'm' : 'd'], w = WORK.find(x => x.key === st.key), p = PROJECTS.find(x => x.key === st.key);
+    if (w) return `projects/${w.slug}`;
+    return p ? `projects/${p.slug}${st.full ? '' : '/preview'}` : (S.pgroup === 'personal' ? 'projects/personal' : 'projects');
   }
   if (sec === 'publications') { const t = THEMES.find(x => x.key === S.theme); return t ? `publications/${t.slug}` : 'publications'; }
   if (sec === 'journey') {
@@ -824,9 +921,9 @@ function syncHash() {
 }
 function applyHash(focus) {
   const [sec, slug, mode] = location.hash.replace(/^#\/?/, '').split('/');
-  S.proj = { d:{key:null,full:false}, m:{key:null,full:false} }; S.theme = null; S.essay = false; S.jd = S.jm = JD_DEFAULT;
+  S.proj = { d:{key:null,full:false}, m:{key:null,full:false} }; S.theme = null; S.essay = false; S.jd = S.jm = JD_DEFAULT; S.pgroup = 'work';
   let name = null;
-  if (sec === 'projects') { name = sec; const p = PROJECTS.find(x => x.slug === slug); if (p) { S.proj.d = { key: p.key, full: mode !== 'preview' }; S.proj.m = { ...S.proj.d }; } }
+  if (sec === 'projects') { name = sec; const w = WORK.find(x => x.slug === slug), p = w || PROJECTS.find(x => x.slug === slug); if (slug === 'personal' || (p && !w)) S.pgroup = 'personal'; if (p) { S.proj.d = { key: p.key, full: !w && mode !== 'preview' }; S.proj.m = { ...S.proj.d }; } }
   else if (sec === 'publications') { name = sec; const t = THEMES.find(x => x.slug === slug); if (t) S.theme = t.key; }
   else if (sec === 'journey') { name = sec; const i = JOURNEY.findIndex(x => x.slug === slug); if (i >= 0) S.jd = S.jm = i; }
   else if (sec === 'story') { name = 'journey'; S.jd = S.jm = JOURNEY.findIndex(x => x.essay); S.essay = true; }
