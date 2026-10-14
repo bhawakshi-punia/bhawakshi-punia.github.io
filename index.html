@@ -202,6 +202,7 @@
   .tag { font-size: 11px; padding: 2px 9px; border: 1px solid var(--border2); border-radius: 2px; color: var(--text3); }
   .chip { font-size: 12px; padding: 3px 10px; border: 1px solid var(--border2); border-radius: 12px; color: var(--text2); cursor: pointer; background: transparent; white-space: nowrap; }
   .chip:hover { border-color: var(--accent); color: var(--accent); }
+  .pacts { display: flex; flex-wrap: wrap; gap: 6px 20px; }
   .readmore { font-size: 13px; color: var(--accent); cursor: pointer; font-weight: 600; background: none; border: none; text-align: left; padding: 0; }
   .pbar { --pen: var(--accent); --paper: var(--bg); }
   [data-psec] { scroll-margin-top: 64px; }
@@ -591,7 +592,7 @@ const PROJECTS = [
     figs:[['assets/images/dopamine-receptor/MW_vs_LogP.png','Molecular weight vs LogP across all ligands'],['assets/images/dopamine-receptor/pEC50_vs_target_name.png','pEC50 distribution across receptor subtypes (D1–D5)'],['assets/images/dopamine-receptor/train_val_scores.png','GS-tuned GB vs ANN models — MAE, RMSE, R²',1],['assets/images/dopamine-receptor/feature_importance.png','Feature importance — LogP, MW, TPSA, rotatable bonds']],
     outro:'Gradient Boosting stayed strongest despite overfitting; the ANN reduced overfitting but not error — dataset size is the limiting factor. Next step: Graph Neural Networks that encode molecular topology directly.',
     links:[['GitHub repo ↗','https://github.com/bhawakshi-punia/ML_pEC50_dopamine_receptor/tree/main']] },
-  { key:'swt', slug:'sweet-truth', when:'Dec 2024', ord:'2024-12', blurb:'OCR and NLP pipeline that finds hidden sweeteners on food labels, from typed text or a photo. 97% test accuracy.', img:'assets/images/projects/sweet_truth.png', domain:'Computer Vision · NLP · Health', title:'The Sweet Truth Detector: Hidden Sweeteners in Packaged Foods', meta:'OpenCV · SpaCy · Scikit-learn · OCR',
+  { key:'swt', slug:'sweet-truth', when:'Dec 2024 · web app Oct 2026', ord:'2026-10', badges:['Live app'], live:'https://bhawakshi-punia.github.io/sweet_truth/', blurb:'OCR and NLP pipeline that finds hidden sweeteners on food labels, from typed text or a photo. 97% test accuracy. Now a live web app.', img:'assets/images/projects/sweet_truth_app.jpg', domain:'Computer Vision · NLP · Health', title:'The Sweet Truth Detector: Hidden Sweeteners in Packaged Foods', meta:'OpenCV · SpaCy · Scikit-learn · OCR',
     lead:'Developed an OCR and NLP pipeline to automatically detect hidden sweeteners in packaged food labels, making nutritional transparency accessible and automatable at scale.',
     tags:['OpenCV','SpaCy','Scikit-learn','Seaborn','OCR','Image Annotation'],
     intro:'From invert syrup to maltitol, sweeteners often disguise themselves under unfamiliar names. This pipeline detects sweeteners in ingredient lists — from typed text or a photo of the packaging — and visually highlights them.',
@@ -599,8 +600,8 @@ const PROJECTS = [
     stats:[['97%','Test accuracy'],['1000+','Synthetic training entries'],['2','Input modes (text + image)']],
     note:'A Random Forest Classifier on TF-IDF features achieved 97% accuracy on the hold-out set — reliable enough for real-world label scanning.',
     figs:[['assets/images/sweet-truth/bournvita.png','Bournvita — sweeteners highlighted'],['assets/images/sweet-truth/toothpaste_annotated.jpg','Toothpaste — sweetener detection'],['assets/images/sweet-truth/herb_mix.png','Herb mix — sweeteners identified'],['assets/images/sweet-truth/hold_out_confusion_matrix.png','Hold-out set confusion matrix']],
-    outro:'Next: refine OCR over-annotation (e.g. "Sodium" vs "Trisodium"), deploy as a web app, and expand the sweetener alias database.',
-    links:[['GitHub repo ↗','https://github.com/bhawakshi-punia/sweet_truth']] },
+    outro:'Now live as a web app: type or photograph an ingredient list on your phone or computer and see the sweeteners highlighted. Next: expand the sweetener alias database and explore live camera scanning.',
+    links:[['Try the live app ↗','https://bhawakshi-punia.github.io/sweet_truth/'],['GitHub repo ↗','https://github.com/bhawakshi-punia/sweet_truth']] },
   { key:'yoga', slug:'yoga-youtube', when:'Jan 2025', ord:'2025-01', blurb:'NLP and engagement analysis of yoga videos on YouTube, delivered as an interactive Tableau dashboard.', img:'assets/images/projects/yoga_img.png', domain:'NLP · Trend Analysis · Wellness', title:'Decoding Yoga Video Trends on YouTube', meta:'Python · NLTK · Pandas · Tableau',
     lead:'End-to-end analysis of yoga channel engagement using NLP and audience behaviour data — content trends, sentiment and performance drivers, delivered as interactive Tableau dashboards.',
     tags:['Python','NLTK','Pandas','Tableau','NLP','Data Visualisation'],
@@ -786,7 +787,7 @@ function projHTML(which) {
       <div class="prow"><span class="pdomain">${p.domain}</span><button class="chip" data-pclose="${which}">▴ collapse</button></div>
       <div class="ptitle">${p.title}</div><div class="plead">${p.lead}</div>
       <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-      <button class="readmore" data-pfull="${which}">Read full case study →</button></div></div></div>`;
+      <div class="pacts"><button class="readmore" data-pfull="${which}">Read full case study →</button>${p.live ? `<a class="readmore" href="${p.live}" target="_blank">Try the live app ↗</a>` : ''}</div></div></div></div>`;
     const steps = `<div class="steps">${p.steps.map((s,i)=>`<div class="step"><b class="n">0${i+1}</b><div><div class="st">${s[0]}</div><div class="sd">${s[1]}</div></div></div>`).join('')}</div>`;
     const res = p.table ? `<table class="res"><tr>${p.table.head.map(h=>`<th>${h}</th>`).join('')}</tr>${p.table.rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</table>`
                         : `<div class="stats">${p.stats.map(s=>`<div class="stat"><div class="v">${s[0]}</div><div class="k">${s[1]}</div></div>`).join('')}</div>`;
